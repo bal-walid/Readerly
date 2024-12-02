@@ -4,13 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        main: '#1E90FF', // Example for blue
-        primary: '#F5F5DC', // Example for beige
-        'text-main': '#333333', // Example for main text
-        'text-secondary': '#777777', // Example for secondary text
+        main: "#1E90FF",
+        primary: "#F5F5DC",
+        "text-main": "#333333",
+        "text-secondary": "#777777",
       },
+    },
+    fontFamily: {
+      logo: ["Caveat", "cursive"],
+      header: ["Poppins", "sans-serif"],
+      body: ["Inter", "sans-serif"],
     },
   },
   plugins: [],
-}
-
+};
