@@ -44,4 +44,10 @@
   font-style: normal;
 }
 
+body {
+  @apply w-screen h-screen
+}
 
+#root {
+  @apply w-full h-full flex
+}
