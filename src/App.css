@@ -44,8 +44,13 @@
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+
 body {
-  @apply w-screen h-screen
+  @apply w-full h-screen
 }
 
 #root {
