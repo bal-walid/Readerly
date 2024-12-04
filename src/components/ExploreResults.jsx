@@ -10,11 +10,14 @@ const ExploreResults = () => {
   const { data, loading, error } = useFetch(fetchByCriteria, [criteria, query]);
   if (data) {
     return (
-      <div>
-        {data.map((book) => 
-          <BookCard key={book.key} book={book} />
-        )}
-      </div>
+      <>
+        <h1 className="font-header font-semibold text-3xl capitalize mt-14 mb-5">Search Results for: {query}</h1>
+        <div className="grid grid-cols-[repeat(auto-fit,_minmax(170px,_1fr))] place-items-center gap-6 pb-4 overflow-y-auto">
+          {data.map((book) => (
+            <BookCard key={book.key} book={book} />
+          ))}
+        </div>
+      </>
     );
   }
 };
