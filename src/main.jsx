@@ -1,7 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.jsx";
+import ExploreResults from "./components/ExploreResults.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -9,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/" },
-      { path: "/explore" },
+      { path: "/explore", element: <ExploreResults/> },
       { path: "/shelf" },
       { path: "/home" },
       { path: "/wishlist" },
