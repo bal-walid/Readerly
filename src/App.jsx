@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Navbar/>
-      <main className='flex-1 overflow-y-auto bg-primary'>
+      <main className='flex-1 overflow-y-auto bg-primary px-12 pt-8'>
         <SearchInput/>
         <Outlet/>
       </main>
