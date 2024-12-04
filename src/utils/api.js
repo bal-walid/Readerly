@@ -7,7 +7,7 @@ const mapBooksResponse = (data) => {
   return data.docs.map((doc) => ({
     key: doc.key,
     title: doc.title,
-    author: doc.author_name ? doc.author_name.join(', ') : 'Unknown Author',
+    author: doc.author_name ? doc.author_name[0] : 'Unknown Author',
     cover: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null,
     publishDate: doc.first_publish_year || 'Unknown Year',
   }));
