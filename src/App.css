@@ -50,7 +50,7 @@
 
 
 body {
-  @apply w-full h-screen
+  @apply w-full h-screen text-text-main font-body
 }
 
 #root {
