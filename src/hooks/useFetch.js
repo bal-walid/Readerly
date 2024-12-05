@@ -9,6 +9,7 @@ const useFetch = (fetchFunction, params) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const result = await fetchFunction(...params); // Spread params if necessary
         setData(result);
       } catch (err) {
@@ -19,7 +20,6 @@ const useFetch = (fetchFunction, params) => {
     };
 
     fetchData();
-    console.log(params);
   // JSON.stringify is used because the straight up array was failing the referrential check and triggering
   // re-renders
   }, [JSON.stringify(params)]);
