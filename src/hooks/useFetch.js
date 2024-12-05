@@ -19,7 +19,10 @@ const useFetch = (fetchFunction, params) => {
     };
 
     fetchData();
-  }, []); // Re-run when fetchFunction or params change
+    console.log(params);
+  // JSON.stringify is used because the straight up array was failing the referrential check and triggering
+  // re-renders
+  }, [JSON.stringify(params)]);
 
   return { data, loading, error };
 };
