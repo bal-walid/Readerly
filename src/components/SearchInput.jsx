@@ -16,9 +16,8 @@ const SearchInput = () => {
     setCriteria(event.target.value);
   };
 
-  const handleSearchClick = () => {
+  const handleSearch = () => {
     if (query) {
-      // Navigates to /explore with the search params (criteria and query)
       navigate(`/explore?criteria=${criteria}&query=${query}`);
     }
   };
@@ -39,11 +38,12 @@ const SearchInput = () => {
         type="text"
         value={query}
         onChange={handleQueryChange}
+        onKeyUp={(e) => e.key === 'Enter' && handleSearch()}
         placeholder="Search..."
         className="py-2 px-3 outline-none"
       />
 
-      <button onClick={handleSearchClick} className="text-main flex-items-center py-2 px-3 bg-white rounded-r-full outline-none">
+      <button onClick={handleSearch} className="text-main flex-items-center py-2 px-3 bg-white rounded-r-full outline-none">
         <SearchIcon sx={{strokeWidth: 0}} fontSize="small"/>
       </button>
     </div>
