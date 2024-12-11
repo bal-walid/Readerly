@@ -17,7 +17,12 @@ const ExploreResults = () => {
   if (data) {
     return (
       <>
-        {selectedBook && <ExploreBookModal close={() => setSelectedBook(null)} book={selectedBook}/>}
+        {selectedBook && (
+          <ExploreBookModal
+            close={(e) => e.target === e.currentTarget && setSelectedBook(null)}
+            book={selectedBook}
+          />
+        )}
         <h1 className="font-header font-semibold text-3xl capitalize mt-14 mb-5">
           Search Results for: {query}
         </h1>
