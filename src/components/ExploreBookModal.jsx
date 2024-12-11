@@ -9,7 +9,7 @@ const ExploreBookModal = ({ book, close }) => {
       <div className="bg-white p-6">
         {/* Modal Header */}
         <div className="flex items-center">
-          <h2 className="text-main text-2xl font-header font-semibold">
+          <h2 className="text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
             {book.title}
           </h2>
           <div className="flex ml-auto gap-3">
