@@ -60,3 +60,7 @@ body {
 .btn {
   @apply shadow-btn-shadow py-2 px-6 rounded-full
 }
+
+h1, h2, h3 {
+  @apply font-header font-semibold
+}
