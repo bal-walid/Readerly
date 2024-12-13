@@ -44,7 +44,7 @@ const ExploreBookModal = ({ book, close }) => {
             src={coverUrl}
             alt=""
           />
-          <div>
+          <div className="h-full grid grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)]">
             <p className="flex items-center gap-3">
               <StarIcon fontSize="large" className="text-main" />
               <span>
@@ -52,26 +52,40 @@ const ExploreBookModal = ({ book, close }) => {
               </span>
               Average Rating on OpenLibrary
             </p>
-            <h3 className="text-2xl mt-3">Synopsis</h3>
-            <p>
-              Ged was the greatest sorcerer in Earthsea, but in his youth he was
-              the reckless Sparrowhawk. In his hunger for power and knowledge,
-              he tampered with long-held secrets and loosed a terrible shadow
-              upon the world. This is the tumultuous tale of his testing, how he
-              mastered the mighty words of power, tamed an ancient dragon, and
-              crossed death's threshold to restore the balance. With stories as
-              perennial and universally beloved as The Chronicles of Narnia{" "}
-            </p>
-            <h3 className="text-2xl mt-3">About Author</h3>
-            <p>
-              As of 2010, Ursula K. Le Guin has published twenty-one novels,
-              eleven volumes of short stories, three collections of essays,
-              twelve books for children, six volumes of poetry and four of
-              translation, and has received many awards: Hugo, Nebula, National
-              Book Award, PEN-Malamud, etc. Her recent publications include a
-              volume of poetry, Incredible Good Fortune, the novel Lavinia, and
-              an essay collection, Cheek by Jowl. She lives in Portland, Oregon.
-            </p>
+            <div className="flex flex-col">
+              <h3 className="text-2xl mt-3">Synopsis</h3>
+              <p className="overflow-y-auto scrollbar pr-3">
+                Ged was the greatest sorcerer in Earthsea, but in his youth he
+                was the reckless Sparrowhawk. In his hunger for power and
+                knowledge, he tampered with long-held secrets and loosed a
+                terrible shadow upon the world. This is the tumultuous tale of
+                his testing, how he mastered the mighty words of power, tamed an
+                ancient dragon, and crossed death's threshold to restore the
+                balance. With stories as perennial and universally beloved as
+                The Chronicles of Narnia{" "}
+
+              </p>
+            </div>
+            <div className="flex flex-col">
+              <h3 className="text-2xl mt-3">About Author</h3>
+              <p className="overflow-y-auto scrollbar pr-3">
+                As of 2010, Ursula K. Le Guin has published twenty-one novels,
+                eleven volumes of short stories, three collections of essays,
+                twelve books for children, six volumes of poetry and four of
+                translation, and has received many awards: Hugo, Nebula,
+                National Book Award, PEN-Malamud, etc. Her recent publications
+                include a volume of poetry, Incredible Good Fortune, the novel
+                Lavinia, and an essay collection, Cheek by Jowl. She lives in
+                Portland, Oregon. As of 2010, Ursula K. Le Guin has published
+                twenty-one novels, eleven volumes of short stories, three
+                collections of essays, twelve books for children, six volumes of
+                poetry and four of translation, and has received many awards:
+                Hugo, Nebula, National Book Award, PEN-Malamud, etc. Her recent
+                publications include a volume of poetry, Incredible Good
+                Fortune, the novel Lavinia, and an essay collection, Cheek by
+                Jowl. She lives in Portland, Oregon.
+              </p>
+            </div>
           </div>
         </div>
       </div>

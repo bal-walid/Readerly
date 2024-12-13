@@ -659,6 +659,10 @@ video {
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 }
 
+.grid-rows-\[auto_minmax\(0\2c 1fr\)_minmax\(0\2c 1fr\)\] {
+  grid-template-rows: auto minmax(0,1fr) minmax(0,1fr);
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -805,6 +809,10 @@ video {
   padding-bottom: 1rem;
 }
 
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
 .pt-12 {
   padding-top: 3rem;
 }
@@ -916,10 +924,29 @@ video {
   outline-offset: 2px;
 }
 
-@font-face {
-  font-family: 'Caveat';
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
 
-  src: url('./assets/fonts/Caveat/Caveat-VariableFont_wght.ttf') format('truetype');
+.scrollbar::-webkit-scrollbar-track {
+  background: #8a8a8a;
+  border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #e7e0ec;
+  border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e3d6ec;
+}
+
+@font-face {
+  font-family: "Caveat";
+
+  src: url("./assets/fonts/Caveat/Caveat-VariableFont_wght.ttf")
+    format("truetype");
 
   font-weight: 100 200 300 400 500 600 700;
 
@@ -927,9 +954,10 @@ video {
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
 
-  src: url('./assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+  src: url("./assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf")
+    format("truetype");
 
   font-weight: 100 200 300 400 500 600 700;
 
@@ -937,9 +965,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 
-  src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  src: url("assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
 
   font-weight: 400;
 
@@ -947,9 +975,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 
-  src: url('assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+  src: url("assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
 
   font-weight: 500;
 
@@ -957,9 +985,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 
-  src: url('assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  src: url("assets/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
 
   font-weight: 600;
 
@@ -967,9 +995,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 
-  src: url('assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  src: url("assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
 
   font-weight: 700;
 
@@ -1006,7 +1034,9 @@ body {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: Poppins, sans-serif;
   font-weight: 600;
 }
