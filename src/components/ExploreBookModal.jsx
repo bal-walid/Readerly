@@ -2,11 +2,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";
-import { fetchAuthorBio } from "../utils/api";
+import { fetchAuthorBio, fetchSynopsis } from "../utils/api";
 import useFetch from "../hooks/useFetch";
 
 const ExploreBookModal = ({ book, close }) => {
-  const { loading, error, bio } = useFetch(fetchAuthorBio, [book.authorId]);
+  const [bio, bioLoading, bioError] = useFetch(fetchAuthorBio, [book.authorId]);
+  const [synopsis, synopsisLoading, synopsisError] = useFetch(fetchSynopsis, [
+    book.key,
+  ]);
   const coverUrl = book.cover
     ? `https://covers.openlibrary.org/b/id/${book.cover}-L.jpg`
     : null;
@@ -54,37 +57,21 @@ const ExploreBookModal = ({ book, close }) => {
             </p>
             <div className="flex flex-col">
               <h3 className="text-2xl mt-3">Synopsis</h3>
-              <p className="overflow-y-auto scrollbar pr-3">
-                Ged was the greatest sorcerer in Earthsea, but in his youth he
-                was the reckless Sparrowhawk. In his hunger for power and
-                knowledge, he tampered with long-held secrets and loosed a
-                terrible shadow upon the world. This is the tumultuous tale of
-                his testing, how he mastered the mighty words of power, tamed an
-                ancient dragon, and crossed death's threshold to restore the
-                balance. With stories as perennial and universally beloved as
-                The Chronicles of Narnia{" "}
-
-              </p>
+              <p
+                className="break-anywhere overflow-y-auto scrollbar pr-3"
+                dangerouslySetInnerHTML={{
+                  __html: synopsisLoading ? "Loading synopsis" : (synopsis || "No Synopsis Found."),
+                }}
+              ></p>
             </div>
             <div className="flex flex-col">
               <h3 className="text-2xl mt-3">About Author</h3>
-              <p className="overflow-y-auto scrollbar pr-3">
-                As of 2010, Ursula K. Le Guin has published twenty-one novels,
-                eleven volumes of short stories, three collections of essays,
-                twelve books for children, six volumes of poetry and four of
-                translation, and has received many awards: Hugo, Nebula,
-                National Book Award, PEN-Malamud, etc. Her recent publications
-                include a volume of poetry, Incredible Good Fortune, the novel
-                Lavinia, and an essay collection, Cheek by Jowl. She lives in
-                Portland, Oregon. As of 2010, Ursula K. Le Guin has published
-                twenty-one novels, eleven volumes of short stories, three
-                collections of essays, twelve books for children, six volumes of
-                poetry and four of translation, and has received many awards:
-                Hugo, Nebula, National Book Award, PEN-Malamud, etc. Her recent
-                publications include a volume of poetry, Incredible Good
-                Fortune, the novel Lavinia, and an essay collection, Cheek by
-                Jowl. She lives in Portland, Oregon.
-              </p>
+              <p
+                className="break-anywhere overflow-y-auto scrollbar pr-3"
+                dangerouslySetInnerHTML={{
+                  __html: bioLoading ? "Loading bio" : (bio || "Author data not found."),
+                }}
+              ></p>
             </div>
           </div>
         </div>

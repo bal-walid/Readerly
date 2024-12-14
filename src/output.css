@@ -942,6 +942,10 @@ video {
   background: #e3d6ec;
 }
 
+.break-anywhere {
+  overflow-wrap: anywhere;
+}
+
 @font-face {
   font-family: "Caveat";
 
@@ -1032,6 +1036,15 @@ body {
   --tw-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   --tw-shadow-colored: 0px 0px 4px 0px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.link {
+  --tw-text-opacity: 1;
+  color: rgb(242 120 81 / var(--tw-text-opacity, 1));
+}
+
+.link:hover {
+  text-decoration-line: underline;
 }
 
 h1,
