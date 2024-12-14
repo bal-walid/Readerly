@@ -9,7 +9,7 @@ const ExploreResults = () => {
   const [params] = useSearchParams();
   const criteria = params.get("criteria");
   const query = params.get("query");
-  const { data, loading, error } = useFetch(fetchByCriteria, [criteria, query]);
+  const [ data, loading, error ] = useFetch(fetchByCriteria, [criteria, query]);
   const [selectedBook, setSelectedBook] = useState(null);
   if (loading) {
     return "Loading...";

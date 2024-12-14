@@ -24,7 +24,7 @@ const useFetch = (fetchFunction, params) => {
   // re-renders
   }, [JSON.stringify(params)]);
 
-  return { data, loading, error };
+  return [ data, loading, error ];
 };
 
 export default useFetch;
