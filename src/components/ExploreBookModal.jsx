@@ -56,13 +56,21 @@ const ExploreBookModal = ({
         />
         <div className="h-full grid grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)]">
           {/* Ratings */}
+          {/* Ratings */}
           <p className="flex items-center gap-3">
-            <StarIcon fontSize="large" className="text-main" />
-            <span>
-              {book.rating} <span className="font-semibold text-lg">/ 5</span>
-            </span>
-            Average Rating on OpenLibrary
-            <span className="text-text-secondary italic text-sm">({book.ratingCount} reviews)</span>
+            <StarIcon
+              fontSize="large"
+              className={book.rating ? "text-main" : "text-text-secondary"}
+            />
+            {book.rating ? (
+              <>
+                <span>{book.rating} <span className="font-semibold text-lg">/ 5</span></span>
+                Average Rating on OpenLibrary
+                <span className="text-secondary text-sm italic">({book.ratingCount} reviews)</span>
+              </>
+            ) : (
+              <>No Reviews</>
+            )}
           </p>
 
           {/* Synopsis */}
