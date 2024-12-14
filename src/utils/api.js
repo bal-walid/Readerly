@@ -1,3 +1,5 @@
+import formatText from "./formatText";
+
 const API_BASE = `https://openlibrary.org/`;
 const default_fields =
   "&fields=key,title,author_name,author_key,first_publish_year,cover_i";
@@ -42,3 +44,50 @@ export const fetchByCriteria = async (
   }
 };
 
+export const fetchAuthorBio = async (authorId) => {
+  const url = `${API_BASE}authors/${authorId}.json`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch author: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    let bio = data.bio;
+    if (bio == null) {
+      return null;
+    }
+    if (typeof (bio == "object") && bio.value) {
+      bio = bio.value;
+    }
+    return formatText(bio);
+  } catch {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+export const fetchSynopsis = async (workId) => {
+  const url = `${API_BASE}works/${workId}.json`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch synopsis: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    let synopsis = data.description;
+    if (synopsis == null) {
+      return null;
+    }
+    if (typeof (synopsis == "object") && synopsis.value) {
+      synopsis = synopsis.value;
+    }
+    return formatText(synopsis);
+  } catch {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
