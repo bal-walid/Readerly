@@ -13,7 +13,7 @@ const mapBooksResponse = (data) => {
     authorId: doc.author_key ? doc.author_key[0] : null,
     cover: doc.cover_i || null,
     publishDate: doc.first_publish_year || "Unknown Year",
-    rating: Number(doc.ratings_average).toFixed(2) || null,
+    rating: doc.ratings_average ? Number(doc.ratings_average).toFixed(2) : null,
     ratingCount: doc.ratings_count || null
   }));
 };
