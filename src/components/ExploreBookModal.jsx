@@ -58,7 +58,7 @@ const ExploreBookModal = ({ book, close }) => {
             <div className="flex flex-col">
               <h3 className="text-2xl mt-3">Synopsis</h3>
               <p
-                className="break-anywhere overflow-y-auto scrollbar pr-3"
+                className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
                 dangerouslySetInnerHTML={{
                   __html: synopsisLoading ? "Loading synopsis" : (synopsis || "No Synopsis Found."),
                 }}
@@ -67,7 +67,7 @@ const ExploreBookModal = ({ book, close }) => {
             <div className="flex flex-col">
               <h3 className="text-2xl mt-3">About Author</h3>
               <p
-                className="break-anywhere overflow-y-auto scrollbar pr-3"
+                className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
                 dangerouslySetInnerHTML={{
                   __html: bioLoading ? "Loading bio" : (bio || "Author data not found."),
                 }}

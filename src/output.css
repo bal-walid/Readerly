@@ -1038,12 +1038,12 @@ body {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.link {
+.book-info a {
   --tw-text-opacity: 1;
   color: rgb(242 120 81 / var(--tw-text-opacity, 1));
 }
 
-.link:hover {
+.book-info a:hover {
   text-decoration-line: underline;
 }
 

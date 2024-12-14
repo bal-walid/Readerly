@@ -1,4 +1,7 @@
+import {marked} from 'marked';
 const linkRegex = /(https?\:\/\/)?(www\.)?[^\s]+\.[^\s]+/g
+
+
 
 function replaceLinks(matched) {
   let withProtocol = matched
@@ -18,6 +21,7 @@ function replaceLinks(matched) {
 }
 
 export default function formatText(text) {
-  let formattedText = text.replace(linkRegex, replaceLinks);
+  const formattedText = marked(text);
   return formattedText.replace(/(\r\n)+/g, '<br>');
+
 }

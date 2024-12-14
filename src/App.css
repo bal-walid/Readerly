@@ -62,7 +62,7 @@ body {
   @apply shadow-btn-shadow py-2 px-6 rounded-full;
 }
 
-.link {
+.book-info a {
   @apply text-main hover:underline
 }
 
