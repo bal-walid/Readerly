@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch";
 import { fetchByCriteria } from "../utils/api";
 import { useSearchParams } from "react-router-dom";
 import BookCard from "./BookCard";
-import ExploreBookModal from "./ExploreBookModal";
+import ExploreBookContainer from "./ExploreBookContainer";
 import { useState } from "react";
 
 const ExploreResults = () => {
@@ -18,7 +18,7 @@ const ExploreResults = () => {
     return (
       <>
         {selectedBook && (
-          <ExploreBookModal
+          <ExploreBookContainer
             close={(e) => e.target === e.currentTarget && setSelectedBook(null)}
             book={selectedBook}
           />
