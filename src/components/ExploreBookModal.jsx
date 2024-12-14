@@ -59,9 +59,10 @@ const ExploreBookModal = ({
           <p className="flex items-center gap-3">
             <StarIcon fontSize="large" className="text-main" />
             <span>
-              4.24 <span className="font-semibold text-lg">/ 5</span>
+              {book.rating} <span className="font-semibold text-lg">/ 5</span>
             </span>
             Average Rating on OpenLibrary
+            <span className="text-text-secondary italic text-sm">({book.ratingCount} reviews)</span>
           </p>
 
           {/* Synopsis */}
