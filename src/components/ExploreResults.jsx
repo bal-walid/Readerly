@@ -1,9 +1,9 @@
-import useFetch from "../hooks/useFetch";
-import { fetchByCriteria } from "../utils/api";
-import { useSearchParams } from "react-router-dom";
-import BookCard from "./BookCard";
-import ExploreBookContainer from "./ExploreBookContainer";
 import { useState } from "react";
+import useFetch from "../hooks/useFetch";
+import { useSearchParams } from "react-router-dom";
+import BookGrid from "./BookGrid";
+import ExploreBookContainer from "./ExploreBookContainer";
+import { fetchByCriteria } from "../utils/api";
 
 const ExploreResults = () => {
   const [params] = useSearchParams();
@@ -27,13 +27,7 @@ const ExploreResults = () => {
           Search Results for: {query}
         </h1>
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(170px,_1fr))] gap-6 pb-4 overflow-y-auto">
-          {data.map((book) => (
-            <BookCard
-              onClick={() => setSelectedBook(book)}
-              key={book.key}
-              book={book}
-            />
-          ))}
+          <BookGrid books={data} onCardClick={(book) => setSelectedBook(book)}/>
         </div>
       </>
     );
