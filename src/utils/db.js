@@ -29,9 +29,11 @@ const getShelfStats = async () => {
     "Completed",
   ];
   const stats = {};
+  stats.Total = 0;
 
   for (const status of statuses) {
     stats[status] = await db.shelf.where("status").equals(status).count();
+    stats.Total += stats[status];
   }
 
   return stats;
