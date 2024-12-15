@@ -2,16 +2,16 @@ import Dexie from "dexie";
 const db = new Dexie("books");
 db.version(1).stores({
   shelf:
-    "++id, status, key, title, publishDate, authorId, author, authorBio, synopsis, cover",
+    "key, status",
   wishlist:
-    "++id, key, title, publishDate, authorId, author, authorBio, synopsis, cover",
+    "key",
 });
 
 db.open();
 
 db.shelf.hook("creating", (primKey, obj) => {
   if (!obj.status) {
-    obj.status = "Not Read";
+    obj.status = "To Be Read";
   }
 });
 
@@ -23,4 +23,15 @@ const addBookToWishlist = async (book, authorBio, synopsis) => {
   return await db.wishlist.add({ ...book, authorBio, synopsis });
 };
 
-export { addBookToShelf, addBookToWishlist };
+const getShelfStats = async () => {
+  const statuses = ["Currently Reading", "To Be Read", "Did Not Finish", "Completed"];
+  const stats = {};
+
+  for (const status of statuses) {
+    stats[status] = await db.shelf.where("status").equals(status).count();
+  }
+
+  return stats;
+};
+
+export { addBookToShelf, addBookToWishlist, getShelfStats };
