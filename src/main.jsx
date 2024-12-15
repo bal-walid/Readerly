@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import ExploreResults from "./components/ExploreResults.jsx";
-import ShelfStats from "./components/ShelfStats.jsx";
+import Shelf from "./components/Shelf.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,14 +12,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/" },
       { path: "/explore", element: <ExploreResults /> },
-      {
-        path: "/shelf",
-        element: (
-          <>
-            <ShelfStats />
-          </>
-        ),
-      },
+      { path: "/shelf", element: <Shelf /> },
       { path: "/home" },
       { path: "/wishlist" },
     ],
