@@ -13,6 +13,13 @@ db.shelf.hook("creating", (primKey, obj) => {
   }
 });
 
+const statuses = [
+  "Currently Reading",
+  "To Be Read",
+  "Did Not Finish",
+  "Completed",
+];
+
 const addBookToShelf = async (book, authorBio, synopsis) => {
   return await db.shelf.add({ ...book, authorBio, synopsis });
 };
@@ -22,18 +29,13 @@ const addBookToWishlist = async (book, authorBio, synopsis) => {
 };
 
 const getShelfStats = async () => {
-  const statuses = [
-    "Currently Reading",
-    "To Be Read",
-    "Did Not Finish",
-    "Completed",
-  ];
+
   const stats = {};
-  stats.Total = 0;
+  stats["Total Books"] = 0;
 
   for (const status of statuses) {
     stats[status] = await db.shelf.where("status").equals(status).count();
-    stats.Total += stats[status];
+    stats["Total Books"] += stats[status];
   }
 
   return stats;
