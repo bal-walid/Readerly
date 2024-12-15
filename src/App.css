@@ -66,10 +66,17 @@ body {
   @apply text-main hover:underline
 }
 
-h1,
-h2,
-h3 {
+h1
+ {
   @apply font-header font-semibold;
+}
+
+.primary-header {
+  @apply text-3xl mt-14 ;
+}
+
+.secondary-header {
+  @apply text-xl text-text-secondary
 }
 
 @layer utilities {

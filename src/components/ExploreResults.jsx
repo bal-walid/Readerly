@@ -23,7 +23,7 @@ const ExploreResults = () => {
             book={selectedBook}
           />
         )}
-        <h1 className="font-header font-semibold text-3xl capitalize mt-14 mb-5">
+        <h1 className="primary-header capitalize mb-5">
           Search Results for: {query}
         </h1>
 

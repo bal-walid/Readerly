@@ -11,7 +11,6 @@ const ShelfStats = () => {
 
   return (
     <div>
-      <h3>Shelf Stats</h3>
       <ul>
         {Object.entries(stats).map(([status, count]) => (
           <li key={status}>
