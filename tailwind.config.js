@@ -9,6 +9,10 @@ export default {
         "text-main": "#333333",
         "text-secondary": "#606060",
       },
+      backgroundImage: {
+        "stat-gradient":
+          "linear-gradient(141deg, #EB5231 -29.15%, #F97F78 62.33%, #FEA49E 151.64%)",
+      },
     },
     fontFamily: {
       logo: ["Caveat", "cursive"],
@@ -16,8 +20,8 @@ export default {
       body: ["Inter", "sans-serif"],
     },
     boxShadow: {
-      'nav-shadow': '3px 0px 5px 0px rgba(0, 0, 0, 0.25)',
-      'btn-shadow': '0px 0px 4px 0px rgba(0, 0, 0, 0.25)'
+      "nav-shadow": "3px 0px 5px 0px rgba(0, 0, 0, 0.25)",
+      "btn-shadow": "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
     },
   },
   plugins: [],
