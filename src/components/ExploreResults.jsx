@@ -9,7 +9,7 @@ const ExploreResults = () => {
   const [params] = useSearchParams();
   const criteria = params.get("criteria");
   const query = params.get("query");
-  const [ data, loading, error ] = useFetch(fetchByCriteria, [criteria, query]);
+  const [data, loading, error] = useFetch(fetchByCriteria, [criteria, query]);
   const [selectedBook, setSelectedBook] = useState(null);
   if (loading) {
     return "Loading...";
@@ -26,9 +26,8 @@ const ExploreResults = () => {
         <h1 className="font-header font-semibold text-3xl capitalize mt-14 mb-5">
           Search Results for: {query}
         </h1>
-        <div className="grid grid-cols-[repeat(auto-fit,_minmax(170px,_1fr))] gap-6 pb-4 overflow-y-auto">
-          <BookGrid books={data} onCardClick={(book) => setSelectedBook(book)}/>
-        </div>
+
+        <BookGrid books={data} onCardClick={(book) => setSelectedBook(book)} />
       </>
     );
   }
