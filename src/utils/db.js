@@ -1,10 +1,8 @@
 import Dexie from "dexie";
 const db = new Dexie("books");
 db.version(1).stores({
-  shelf:
-    "key, status",
-  wishlist:
-    "key",
+  shelf: "key, status",
+  wishlist: "key",
 });
 
 db.open();
@@ -24,7 +22,12 @@ const addBookToWishlist = async (book, authorBio, synopsis) => {
 };
 
 const getShelfStats = async () => {
-  const statuses = ["Currently Reading", "To Be Read", "Did Not Finish", "Completed"];
+  const statuses = [
+    "Currently Reading",
+    "To Be Read",
+    "Did Not Finish",
+    "Completed",
+  ];
   const stats = {};
 
   for (const status of statuses) {
@@ -34,4 +37,8 @@ const getShelfStats = async () => {
   return stats;
 };
 
-export { addBookToShelf, addBookToWishlist, getShelfStats };
+const getShelfBooks = async () => {
+  return await db.shelf.toArray(); // Fetch all books from the books table
+};
+
+export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks };
