@@ -43,7 +43,7 @@ const ShelfModal = () => {
   return (
     <ModalWrapper onClose={close}>
       {/* Header */}
-      <div className="bg-white h-full w-full flex items-center justify-center">
+      <div onClick={(e) => e.stopPropagation()} className="bg-white h-full w-full flex items-center justify-center">
         <div
           className="bg-primary rounded-md p-6 w-[90%] h-[90%] max-w-[1200px] flex flex-col"
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
