@@ -1,12 +1,15 @@
 // useFetch.js
 import { useState, useEffect } from "react";
 
-const useFetch = (fetchFunction, params = []) => {
+const useFetch = (fetchFunction, params = [], shouldFetch = true) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(shouldFetch);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!shouldFetch) {
+      return;
+    }
     const fetchData = async () => {
       try {
         setLoading(true);

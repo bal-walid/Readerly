@@ -45,7 +45,10 @@ const getShelfBooks = async () => {
   return await db.shelf.toArray(); // Fetch all books from the books table
 };
 
-
+const findShelfBookById = async (id) => {
+  const book = await (db.shelf.where('id').equals(id).first());
+  return book;
+};
 
 
 export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById };
