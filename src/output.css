@@ -680,6 +680,10 @@ video {
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 }
 
+.grid-cols-\[repeat\(auto-fill\2c _minmax\(170px\2c _1fr\)\)\] {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
 .grid-rows-\[auto_minmax\(0\2c 1fr\)_minmax\(0\2c 1fr\)\] {
   grid-template-rows: auto minmax(0,1fr) minmax(0,1fr);
 }
