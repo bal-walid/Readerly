@@ -84,7 +84,7 @@ const ExploreBookModal = ({
 
             {/* Synopsis */}
             <div className="flex flex-col">
-              <h3 className="text-2xl mt-3">Synopsis</h3>
+              <h3 className="text-2xl mt-3 font-semibold">Synopsis</h3>
               <p
                 className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
                 dangerouslySetInnerHTML={{
@@ -97,7 +97,7 @@ const ExploreBookModal = ({
 
             {/* Author Bio */}
             <div className="flex flex-col">
-              <h3 className="text-2xl mt-3">About Author</h3>
+              <h3 className="text-2xl mt-3 font-semibold">About Author</h3>
               <p
                 className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
                 dangerouslySetInnerHTML={{
