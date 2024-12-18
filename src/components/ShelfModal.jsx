@@ -65,7 +65,7 @@ const ShelfModal = () => {
               src={coverUrl}
               alt="Book Cover"
             />
-            <div className="h-full grid grid-rows-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="h-full grid grid-rows-[30%_minmax(0,1fr)]">
               {/* Synopsis */}
               <div className="flex flex-col">
                 <h3 className="text-2xl mt-3 font-semibold">Synopsis</h3>
