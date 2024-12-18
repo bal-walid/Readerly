@@ -6,11 +6,24 @@ import CloseIcon from "@mui/icons-material/Close";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import StarIcon from "@mui/icons-material/Star";
 
 const ShelfModal = () => {
   const location = useLocation();
   const { id } = useParams();
+  const notes = [
+    { title: "Key Takeaways" },
+    { title: "Chapter 10 Thoughts" },
+    { title: "First Impressions" },
+    { title: "Final Reflections" },
+    { title: "Plot Twists" },
+    { title: "Character Development" },
+    { title: "Favorite Quotes" },
+    { title: "Themes and Motifs" },
+    { title: "Writing Style" },
+    { title: "Ending Thoughts" },
+  ];
   const { book: stateBook } = location.state || {};
   const [dbBook, loading, error] = useFetch(
     () => findShelfBookById(id),
@@ -66,7 +79,14 @@ const ShelfModal = () => {
               {/* Notes */}
               <div className="flex flex-col">
                 <h3 className="text-2xl mt-3 font-semibold">Your Notes</h3>
-                <div className="overflow-y-auto scrollbar pr-3"></div>
+                <div className="flex flex-col pt-2 gap-3 overflow-y-auto scrollbar pr-3">
+                  {notes.map((note, index) => (
+                    <div key={index} className="bg-white flex items-center justify-between rounded-lg gap-2 py-2 px-4">
+                      <span className="font-medium text-xl">{note.title}</span>
+                      <ArrowForwardIcon />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
