@@ -8,6 +8,7 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import StarIcon from "@mui/icons-material/Star";
+import BookStatusDropdown from "./BookStatusDropdown";
 
 const ShelfModal = () => {
   const location = useLocation();
@@ -56,7 +57,9 @@ const ShelfModal = () => {
               />
               {book.title}
             </h2>
-            <div className="flex ml-auto gap-5"></div>
+            <div className="flex ml-auto gap-5">
+              <BookStatusDropdown/>
+            </div>
           </div>
           {/* Main */}
           <div className="pt-6 flex gap-9 flex-1 min-h-0">
