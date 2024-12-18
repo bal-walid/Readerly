@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import ExploreResults from "./components/ExploreResults.jsx";
 import Shelf from "./components/Shelf.jsx";
+import ShelfModal from "./components/ShelfModal.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,13 @@ const router = createBrowserRouter([
     children: [
       { path: "/" },
       { path: "/explore", element: <ExploreResults /> },
-      { path: "/shelf", element: <Shelf /> },
+      { 
+        path: "/shelf", 
+        element: <Shelf />,
+        children: [
+          { path: ":id", element: <ShelfModal /> }
+        ],
+      },
       { path: "/home" },
       { path: "/wishlist" },
     ],
