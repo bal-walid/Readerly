@@ -8,7 +8,7 @@ const ShelfBooks = () => {
   const [books, loading, error] = useFetch(getShelfBooks);
   console.log(books);
   const openBookModal = (book) => {
-    router.navigate(`./${book.key}`)
+    router.navigate(`./${book.id}`, {state: {book}})
   }
   const closeBookModal = () => {
     router.navigate('/shelf');

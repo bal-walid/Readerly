@@ -6,7 +6,7 @@ const BookGrid = ({ books, onCardClick }) => {
       {books.map((book) => (
         <BookCard
           onClick={onCardClick ? () => onCardClick(book) : undefined}
-          key={book.key}
+          key={book.id}
           book={book}
         />
       ))}

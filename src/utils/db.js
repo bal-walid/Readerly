@@ -1,8 +1,8 @@
 import Dexie from "dexie";
 const db = new Dexie("books");
 db.version(1).stores({
-  shelf: "key, status",
-  wishlist: "key",
+  shelf: "id, status",
+  wishlist: "id",
 });
 
 db.open();
@@ -45,4 +45,7 @@ const getShelfBooks = async () => {
   return await db.shelf.toArray(); // Fetch all books from the books table
 };
 
-export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks };
+
+
+
+export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById };
