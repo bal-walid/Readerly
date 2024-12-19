@@ -14,7 +14,6 @@ const BookStatusDropdown = ({defaultValue, onStatusChange}) => {
 
   const [selectedOption, setSelectedOption] = useState(statuses.find(status => status.label === defaultValue));
 
-  // Use a ref to directly reference the select element
   const selectRef = useRef(null);
 
   const handleStatusChange = async (event) => {
@@ -29,7 +28,6 @@ const BookStatusDropdown = ({defaultValue, onStatusChange}) => {
   };
 
   const handleDivClick = () => {
-    // Trigger the select dropdown to open when clicking on the div or icon
     selectRef.current.showPicker();
   };
 
@@ -48,7 +46,8 @@ const BookStatusDropdown = ({defaultValue, onStatusChange}) => {
         ref={selectRef}
         value={selectedOption.label}
         onChange={handleStatusChange}
-        className="focus:outline-none" // Remove outline on focus
+        onClick={(e)=> e.stopPropagation()}
+        className="focus:outline-none"
         style={{ color: selectedOption.color }}
       >
         {statuses.map((status, index) => (
