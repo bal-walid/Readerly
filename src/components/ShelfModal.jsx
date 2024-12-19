@@ -1,6 +1,6 @@
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { findShelfBookById } from "../utils/db";
+import { findShelfBookById, updateBookStatus } from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
 import CloseIcon from "@mui/icons-material/Close";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
@@ -58,7 +58,7 @@ const ShelfModal = () => {
               {book.title}
             </h2>
             <div className="flex ml-auto gap-5">
-              <BookStatusDropdown defaultValue={book.status}/>
+              <BookStatusDropdown defaultValue={book.status} onStatusChange={(status)=> updateBookStatus(book.id, status)}/>
             </div>
           </div>
           {/* Main */}

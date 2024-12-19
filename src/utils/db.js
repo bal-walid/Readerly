@@ -50,5 +50,10 @@ const findShelfBookById = async (id) => {
   return book;
 };
 
+const updateBookStatus = async (id, status) => {
+  console.log(id, status);
+  console.log(await db.shelf.update(id, {status}));
+}
 
-export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById };
+
+export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus };
