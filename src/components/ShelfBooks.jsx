@@ -26,6 +26,18 @@ const ShelfBooks = () => {
     );
     setFilteredBooks(filteredBooks);
   };
+  const handleFilter = (status) => {
+    console.log(status);
+    if (status !== "All Books") {
+      const filteredBooks = books.filter((book) => 
+        book.status === status
+      );
+      setFilteredBooks(filteredBooks);
+    } else {
+      setFilteredBooks(books);
+    }
+    
+  }
   return (
     <>
       <h2 className="secondary-header my-6 flex items-center gap-8">
@@ -36,7 +48,7 @@ const ShelfBooks = () => {
               "flex items-center text-md p-2  bg-white rounded-full shadow-btn-shadow cursor-pointer"
             }
             defaultValue={"Completed"}
-            onStatusChange={() => console.log("a")}
+            onStatusChange={handleFilter}
             filterDropdown={true}
           />
           <SearchInput handleSearch={handleSearch} instantSearch={true} />
