@@ -12,7 +12,6 @@ import StarIcon from "@mui/icons-material/Star";
 import BookStatusDropdown from "./BookStatusDropdown";
 
 const ShelfModal = () => {
-  const location = useLocation();
   const { id } = useParams();
   const notes = [
     { title: "Key Takeaways" },
@@ -26,13 +25,14 @@ const ShelfModal = () => {
     { title: "Writing Style" },
     { title: "Ending Thoughts" },
   ];
-  const { book: stateBook } = location.state || {};
+  const [book, setBook] = useState(null);
   const [dbBook, loading, error] = useFetch(
-    () => findShelfBookById(id),
+    findShelfBookById,
     [id],
-    !stateBook
+    setBook
   );
-  const [book, setBook] = useState(stateBook || dbBook);
+  console.log(loading);
+  
   const { close } = useOutletContext();
   const coverUrl =
     book && book.cover
