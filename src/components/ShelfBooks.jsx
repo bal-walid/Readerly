@@ -9,45 +9,59 @@ import SearchInput from "./SearchInput";
 
 const ShelfBooks = () => {
   const [books, setBooks] = useState(null);
-  const [filteredBooks, setFilteredBooks] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchCriteria, setSearchCriteria] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All Books");
+
   const [dbBooks, loading, error] = useFetch(getShelfBooks, [], (data) => {
-    setBooks(data), setFilteredBooks(data);
+    setBooks(data);
   });
+
+  const getFilteredBooks = () => {
+    if (!books) return [];
+    
+    let result = [...books];
+
+    // Apply status filter
+    if (statusFilter !== "All Books") {
+      result = result.filter(book => book.status === statusFilter);
+    }
+
+    // Apply search filter
+    if (searchQuery && searchCriteria) {
+      result = result.filter(book => 
+        book[searchCriteria].toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return result;
+  };
+
   const openBookModal = (book) => {
     router.navigate(`./${book.id}`, { state: { book } });
   };
+
   const closeBookModal = () => {
     router.navigate("/shelf");
   };
+
   const handleSearch = (query, criteria) => {
-    console.log(query);
-    const filteredBooks = books.filter((book) =>
-      book[criteria].includes(query)
-    );
-    setFilteredBooks(filteredBooks);
+    setSearchQuery(query);
+    setSearchCriteria(criteria);
   };
+
   const handleFilter = (status) => {
-    console.log(status);
-    if (status !== "All Books") {
-      const filteredBooks = books.filter((book) => 
-        book.status === status
-      );
-      setFilteredBooks(filteredBooks);
-    } else {
-      setFilteredBooks(books);
-    }
-    
-  }
+    setStatusFilter(status);
+  };
+
   return (
     <>
       <h2 className="secondary-header my-6 flex items-center gap-8">
         Your Books{" "}
         <div className="flex gap-4 w-3/5">
           <BookStatusDropdown
-            className={
-              "flex items-center text-md p-2  bg-white rounded-full shadow-btn-shadow cursor-pointer"
-            }
-            defaultValue={"Completed"}
+            className="flex items-center text-md p-2 bg-white rounded-full shadow-btn-shadow cursor-pointer"
+            defaultValue="All Books"
             onStatusChange={handleFilter}
             filterDropdown={true}
           />
@@ -55,9 +69,10 @@ const ShelfBooks = () => {
         </div>
       </h2>
       {loading && "Loading"}
-      {books && <BookGrid onCardClick={openBookModal} books={filteredBooks} />}
+      {books && <BookGrid onCardClick={openBookModal} books={getFilteredBooks()} />}
       <Outlet context={{ close: closeBookModal }} />
     </>
   );
 };
+
 export default ShelfBooks;
