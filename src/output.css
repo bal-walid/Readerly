@@ -669,6 +669,10 @@ video {
   width: 100%;
 }
 
+.w-\[1fr\] {
+  width: 1fr;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
