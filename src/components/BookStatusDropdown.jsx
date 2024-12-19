@@ -4,7 +4,8 @@ import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import UpdateIcon from '@mui/icons-material/Update';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
-const BookStatusDropdown = () => {
+const BookStatusDropdown = ({defaultValue}) => {
+  console.log("default value:", defaultValue);
   const statuses = [
     { label: "Completed", icon: <TaskAltIcon />, color: "#388E3C" },
     { label: "Currently Reading", icon: <BookmarksIcon />, color: "#1976D2" },
@@ -12,7 +13,7 @@ const BookStatusDropdown = () => {
     { label: "Did Not Finish", icon: <CancelOutlinedIcon />, color: "#D32F2F" },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(statuses[0]);
+  const [selectedOption, setSelectedOption] = useState(statuses.find(status => status.label === defaultValue));
 
   // Use a ref to directly reference the select element
   const selectRef = useRef(null);

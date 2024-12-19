@@ -58,7 +58,7 @@ const ShelfModal = () => {
               {book.title}
             </h2>
             <div className="flex ml-auto gap-5">
-              <BookStatusDropdown/>
+              <BookStatusDropdown defaultValue={book.status}/>
             </div>
           </div>
           {/* Main */}
