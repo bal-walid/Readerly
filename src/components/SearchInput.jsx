@@ -33,7 +33,7 @@ const SearchInput = ({ handleSearch, instantSearch = false }) => {
   };
 
   return (
-    <div className="flex text-[#4D4D4D]">
+    <div className="flex text-[#4D4D4D] min-w-0">
       <select
         value={criteria}
         onChange={handleCriteriaChange}
@@ -50,7 +50,7 @@ const SearchInput = ({ handleSearch, instantSearch = false }) => {
         onChange={handleQueryChange}
         onKeyUp={handleKeyUp}
         placeholder="Search..."
-        className="py-2 px-3 outline-none"
+        className="py-2 px-3 outline-none min-w-0"
       />
 
       <button
