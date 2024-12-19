@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { findShelfBookById, updateBookStatus } from "../utils/db";
@@ -31,7 +32,7 @@ const ShelfModal = () => {
     [id],
     !stateBook
   );
-  const book = stateBook || dbBook;
+  const [book, setBook] = useState(stateBook || dbBook);
   const { close } = useOutletContext();
   const coverUrl =
     book && book.cover
@@ -58,7 +59,7 @@ const ShelfModal = () => {
               {book.title}
             </h2>
             <div className="flex ml-auto gap-5">
-              <BookStatusDropdown defaultValue={book.status} onStatusChange={(status)=> updateBookStatus(book.id, status)}/>
+              <BookStatusDropdown defaultValue={book.status} onStatusChange={(status)=> {updateBookStatus(book.id, status), setBook({...book, status})}}/>
             </div>
           </div>
           {/* Main */}
