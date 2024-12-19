@@ -9,6 +9,7 @@ const BookStatusDropdown = ({
   defaultValue,
   onStatusChange,
   filterDropdown = false,
+  className
 }) => {
   const statuses = [
     { label: "Completed", icon: <TaskAltIcon />, color: "#388E3C" },
@@ -48,7 +49,7 @@ const BookStatusDropdown = ({
 
   return (
     <div
-      className="flex items-center space-x-2 bg-white p-2 rounded-full shadow-btn-shadow cursor-pointer"
+      className={className}
       onClick={handleDivClick} // Trigger the select focus on div click
     >
       {/* Icon next to the select */}

@@ -26,13 +26,9 @@ const ShelfModal = () => {
     { title: "Ending Thoughts" },
   ];
   const [book, setBook] = useState(null);
-  const [dbBook, loading, error] = useFetch(
-    findShelfBookById,
-    [id],
-    setBook
-  );
+  const [dbBook, loading, error] = useFetch(findShelfBookById, [id], setBook);
   console.log(loading);
-  
+
   const { close } = useOutletContext();
   const coverUrl =
     book && book.cover
@@ -44,7 +40,10 @@ const ShelfModal = () => {
   return (
     <ModalWrapper onClose={close}>
       {/* Header */}
-      <div onClick={(e) => e.stopPropagation()} className="bg-white h-full w-full flex items-center justify-center">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white h-full w-full flex items-center justify-center"
+      >
         <div
           className="bg-primary rounded-md p-6 w-[90%] h-[90%] max-w-[1200px] flex flex-col"
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
@@ -59,7 +58,16 @@ const ShelfModal = () => {
               {book.title}
             </h2>
             <div className="flex ml-auto gap-5">
-              <BookStatusDropdown defaultValue={book.status} onStatusChange={(status)=> {updateBookStatus(book.id, status), setBook({...book, status})}}/>
+              <BookStatusDropdown
+                className={
+                  "flex items-center space-x-2 bg-white p-2 rounded-full shadow-btn-shadow cursor-pointer"
+                }
+                defaultValue={book.status}
+                onStatusChange={(status) => {
+                  updateBookStatus(book.id, status),
+                    setBook({ ...book, status });
+                }}
+              />
             </div>
           </div>
           {/* Main */}
@@ -85,7 +93,10 @@ const ShelfModal = () => {
                 <h3 className="text-2xl mt-3 font-semibold">Your Notes</h3>
                 <div className="flex flex-col pt-2 gap-3 overflow-y-auto scrollbar pr-3">
                   {notes.map((note, index) => (
-                    <div key={index} className="bg-white flex items-center justify-between rounded-lg gap-2 py-2 px-4">
+                    <div
+                      key={index}
+                      className="bg-white flex items-center justify-between rounded-lg gap-2 py-2 px-4"
+                    >
                       <span className="font-medium text-xl">{note.title}</span>
                       <ArrowForwardIcon />
                     </div>
