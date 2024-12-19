@@ -34,7 +34,7 @@ const BookStatusDropdown = ({
   const handleStatusChange = async (event) => {
     const selectedStatus = statuses.find(
       (status) => status.label === event.target.value
-    );
+    ) || allBooks;
     try {
       onStatusChange(selectedStatus.label);
       setSelectedOption(selectedStatus);
@@ -69,7 +69,7 @@ const BookStatusDropdown = ({
         className="focus:outline-none"
         style={{ color: selectedOption.color }}
       >
-        {filterDropdown && <option selected={true}>All Books</option>}
+        {filterDropdown && <option>All Books</option>}
         {statuses.map((status, index) => (
           <option
             key={index}
