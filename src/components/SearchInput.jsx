@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
-import Chevron from '@mui/icons-material/KeyboardArrowDown';
+import SearchIcon from "@mui/icons-material/Search";
+import Chevron from "@mui/icons-material/KeyboardArrowDown";
 
 const SearchInput = ({ handleSearch, instantSearch = false }) => {
   const [params] = useSearchParams();
-  const [query, setQuery] = useState(params.get('query') || "");
-  const [criteria, setCriteria] = useState(params.get('criteria') || "title");
+  const [query, setQuery] = useState(params.get("query") || "");
+  const [criteria, setCriteria] = useState(params.get("criteria") || "title");
   const handleQueryChange = (event) => {
     const newQuery = event.target.value;
     setQuery(newQuery);
@@ -18,6 +18,9 @@ const SearchInput = ({ handleSearch, instantSearch = false }) => {
 
   const handleCriteriaChange = (event) => {
     setCriteria(event.target.value);
+    if (instantSearch) {
+      handleSearch(query, event.target.value);
+    }
   };
 
   const handleKeyUp = (e) => {
@@ -41,7 +44,7 @@ const SearchInput = ({ handleSearch, instantSearch = false }) => {
       >
         <option value="title">Title</option>
         <option value="author">Author</option>
-        <option value="subject">Subject</option>
+        {!instantSearch && <option value="subject">Subject</option>}
       </select>
 
       <input
