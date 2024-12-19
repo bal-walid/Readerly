@@ -84,7 +84,7 @@ const ShelfModal = () => {
                 <p
                   className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
                   dangerouslySetInnerHTML={{
-                    __html: book.synopsis,
+                    __html: book.synopsis || "No Synopsis available.",
                   }}
                 ></p>
               </div>
