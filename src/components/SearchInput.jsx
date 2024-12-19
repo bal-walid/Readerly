@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import Chevron from '@mui/icons-material/KeyboardArrowDown';
 
 const SearchInput = ({ handleSearch, instantSearch = false }) => {
-  const [query, setQuery] = useState("");
-  const [criteria, setCriteria] = useState("title");
-
+  const [params] = useSearchParams();
+  const [query, setQuery] = useState(params.get('query') || "");
+  const [criteria, setCriteria] = useState(params.get('criteria') || "title");
   const handleQueryChange = (event) => {
     const newQuery = event.target.value;
     setQuery(newQuery);
