@@ -8,32 +8,20 @@ import {
 import useFetch from "../hooks/useFetch";
 import { findShelfBookById, updateBookStatus } from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
-import CloseIcon from "@mui/icons-material/Close";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import StarIcon from "@mui/icons-material/Star";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import BookStatusDropdown from "./BookStatusDropdown";
 import router from "../main";
 
 const ShelfModal = () => {
   const { id } = useParams();
-  const notes = [
-    { title: "Key Takeaways" },
-    { title: "Chapter 10 Thoughts" },
-    { title: "First Impressions" },
-    { title: "Final Reflections" },
-    { title: "Plot Twists" },
-    { title: "Character Development" },
-    { title: "Favorite Quotes" },
-    { title: "Themes and Motifs" },
-    { title: "Writing Style" },
-    { title: "Ending Thoughts" },
-  ];
+  const [notes, setNotes] = useState(null);
   const [book, setBook] = useState(null);
-  const [dbBook, loading, error] = useFetch(findShelfBookById, [id], setBook);
+  const [dbBook, loading, error] = useFetch(findShelfBookById, [id], (book) => {
+    setBook(book);
+    setNotes(book.notes || null);
+  });
   const { close } = useOutletContext();
   const coverUrl =
     book && book.cover
