@@ -5,7 +5,25 @@ import "../assets/styles/easymde-override.css";
 import { useState } from "react";
 
 const options = {
-  previewClass: ["editor-preview"],
+  toolbar: [
+    "bold",
+    "italic",
+    "heading",
+    "|",
+    "quote",
+    "unordered-list",
+    "ordered-list",
+    "|",
+    "link",
+    "guide",
+    "|",
+    {
+      name: "save", // Custom button name
+      action: () => {console.log('a')}, // Function to be called when clicked
+      className: "fa fa-save", // Icon (using Font Awesome class here)
+      title: "Custom Button", // Tooltip text
+    },
+  ]
 };
 
 const NoteEditor = () => {

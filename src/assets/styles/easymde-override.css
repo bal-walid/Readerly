@@ -16,3 +16,11 @@
   display: flex;
   justify-content: center;
 }
+
+.editor-toolbar .fa-save {
+  color: white;
+}
+
+.editor-toolbar button.save {
+  background-color: rgb(45, 45, 111);
+}
