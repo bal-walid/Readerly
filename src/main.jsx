@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import ExploreResults from "./components/ExploreResults.jsx";
+import NoteEditor from "./components/NoteEditor.jsx";
 import Shelf from "./components/Shelf.jsx";
 import ShelfModal from "./components/ShelfModal.jsx";
 
@@ -13,11 +14,15 @@ const router = createBrowserRouter([
     children: [
       { path: "/" },
       { path: "/explore", element: <ExploreResults /> },
-      { 
-        path: "/shelf", 
+      {
+        path: "/shelf",
         element: <Shelf />,
         children: [
-          { path: ":id", element: <ShelfModal /> }
+          {
+            path: ":id",
+            element: <ShelfModal />,
+            children: [{ path: "notes/add", element: <NoteEditor/> }],
+          },
         ],
       },
       { path: "/home" },
