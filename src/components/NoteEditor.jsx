@@ -5,7 +5,7 @@ import "../assets/styles/easymde-override.css";
 import { useMemo, useCallback, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { addNote } from "../utils/db";
-
+import router from "../main";
 
 const NoteEditor = () => {
   const mdeInstance = useRef(null);
@@ -33,11 +33,12 @@ const NoteEditor = () => {
           name: "save",
           action: async () => {
             console.log('run');
-            if (mdeInstance && titleRef) {
+            if (mdeInstance && titleRef && titleRef.current.value) {
               const markdown = mdeInstance.current.value();
               const title = titleRef.current.value;
               const newNote = {title, markdown};
               await addNote(id, newNote);
+              router.navigate(`/shelf/${id}`);
             }
           },
           className: "fa fa-save",
