@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import ExploreResults from "./components/ExploreResults.jsx";
 import NoteEditor from "./components/NoteEditor.jsx";
+import NoteView from "./components/NoteView.jsx";
 import Shelf from "./components/Shelf.jsx";
 import ShelfModal from "./components/ShelfModal.jsx";
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             path: ":id/notes/add",
             element: <NoteEditor />,
           },
+          {
+            path: ":id/notes/:noteId",
+            element: <NoteView/>
+          }
         ],
       },
       { path: "/home" },

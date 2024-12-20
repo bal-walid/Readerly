@@ -85,6 +85,30 @@ const addNote = async (id, noteContent) => {
   }
 };
 
+const getNoteById = async (bookId, noteId) => {
+  console.log(bookId, noteId);
+  try {
+    const book = await db.shelf.get(bookId);
+    if (!book) {
+      throw new Error(`Book with ID ${bookId} not found.`);
+    }
+    if (!book.notes || book.notes.length === 0) {
+      throw new Error(`No notes found for book with ID ${bookId}.`);
+    }
+    const note = book.notes.find(note => note.id == noteId);
+    if (!note) {
+      throw new Error(`Note with ID ${noteId} not found in book with ID ${bookId}.`);
+    }
+
+    console.log(`Note with ID ${noteId} retrieved from book with ID ${bookId}:`, note);
+    return note;
+  } catch (error) {
+    console.error("Error retrieving note:", error);
+    throw error;
+  }
+};
+
+
 const deleteNote = async (bookId, noteId) => {
   try {
     const book = await db.shelf.get(bookId);
@@ -109,4 +133,4 @@ const deleteNote = async (bookId, noteId) => {
 };
 
 
-export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus, addNote, deleteNote };
+export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote };

@@ -68,7 +68,11 @@ body {
 
 h1
  {
-  @apply font-header font-semibold;
+  @apply font-semibold;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @apply font-header;
 }
 
 .primary-header {
