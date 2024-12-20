@@ -21,7 +21,10 @@ const router = createBrowserRouter([
           {
             path: ":id",
             element: <ShelfModal />,
-            children: [{ path: "notes/add", element: <NoteEditor/> }],
+          },
+          {
+            path: ":id/notes/add",
+            element: <NoteEditor />,
           },
         ],
       },
