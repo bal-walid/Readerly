@@ -100,15 +100,16 @@ const ShelfModal = () => {
                   <div className="flex flex-col pt-2 gap-3 overflow-y-auto scrollbar pr-3">
                     {notes && notes.map((note) => (
                       <div
+                        onClick = {() => router.navigate(`./notes/${note.id}`)}
                         key={note.id}
-                        className="bg-white flex items-center justify-between rounded-lg gap-2 py-2 px-4"
+                        className="bg-white cursor-pointer hover:bg-slate-200 hover:bg-opacity-50 flex items-center justify-between rounded-lg gap-2 py-2 px-4"
                       >
                         <span className="font-medium text-xl">
                           {note.title}
                         </span>
                         <div className="flex gap-2">
-                          <DeleteIcon onClick={()=> onDelete(note.id)} color="error"/>
-                          <ArrowForwardIcon/>
+                          <DeleteIcon onClick={(e)=> {onDelete(note.id); e.stopPropagation()}} color="error"/>
+                          <ArrowForwardIcon className="hover:text-main"/>
                         </div>
                       </div>
                     ))}
