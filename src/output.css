@@ -669,10 +669,6 @@ video {
   width: 100%;
 }
 
-.w-\[1fr\] {
-  width: 1fr;
-}
-
 .min-w-0 {
   min-width: 0px;
 }
@@ -894,6 +890,10 @@ video {
   padding-right: 0.75rem;
 }
 
+.pr-7 {
+  padding-right: 1.75rem;
+}
+
 .pt-12 {
   padding-top: 3rem;
 }
@@ -908,10 +908,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pr-7 {
-  padding-right: 1.75rem;
 }
 
 .text-center {
