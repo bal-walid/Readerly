@@ -55,17 +55,29 @@ const updateBookStatus = async (id, status) => {
   console.log(await db.shelf.update(id, {status}));
 }
 
-const addNote = async (id, note) => {
+const addNote = async (id, noteContent) => {
   try {
     const book = await db.shelf.get(id);
     if (!book) {
       throw new Error(`Book with ID ${id} not found.`);
     }
+
     if (!book.notes) {
       book.notes = [];
     }
-    book.notes.push(note);
+
+    const newNoteId = book.notes.length > 0 
+      ? Math.max(...book.notes.map(note => note.id)) + 1 
+      : 1;
+
+    const newNote = {
+      id: newNoteId,
+      ...noteContent,
+    };
+
+    book.notes.push(newNote);
     await db.shelf.put(book);
+
     console.log(`Note added to book with ID ${id}.`);
   } catch (error) {
     console.error("Error adding note:", error);
@@ -73,5 +85,28 @@ const addNote = async (id, note) => {
   }
 };
 
+const deleteNote = async (bookId, noteId) => {
+  try {
+    const book = await db.shelf.get(bookId);
+    if (!book) {
+      throw new Error(`Book with ID ${bookId} not found.`);
+    }
+    if (!book.notes || book.notes.length === 0) {
+      throw new Error(`No notes found for book with ID ${bookId}.`);
+    }
 
-export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus, addNote };
+    const updatedNotes = book.notes.filter(note => note.id !== noteId);
+    if (updatedNotes.length === book.notes.length) {
+      throw new Error(`Note with ID ${noteId} not found.`);
+    }
+    book.notes = updatedNotes;
+    await db.shelf.put(book);
+    console.log(`Note with ID ${noteId} deleted from book with ID ${bookId}.`);
+  } catch (error) {
+    console.error("Error deleting note:", error);
+    throw error;
+  }
+};
+
+
+export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus, addNote, deleteNote };

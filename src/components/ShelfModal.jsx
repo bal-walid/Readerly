@@ -6,17 +6,22 @@ import {
   useParams,
 } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { findShelfBookById, updateBookStatus } from "../utils/db";
+import { findShelfBookById, updateBookStatus, deleteNote } from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import BookStatusDropdown from "./BookStatusDropdown";
 import router from "../main";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ShelfModal = () => {
   const { id } = useParams();
   const [notes, setNotes] = useState(null);
+  const onDelete = async (noteId) => {
+    await deleteNote(id, noteId);
+    setNotes((notes) => notes.filter((note) => note.id !== noteId));
+  }
   const [book, setBook] = useState(null);
   const [dbBook, loading, error] = useFetch(findShelfBookById, [id], (book) => {
     setBook(book);
@@ -93,15 +98,18 @@ const ShelfModal = () => {
                     />{" "}
                   </h3>
                   <div className="flex flex-col pt-2 gap-3 overflow-y-auto scrollbar pr-3">
-                    {notes.map((note, index) => (
+                    {notes && notes.map((note) => (
                       <div
-                        key={index}
+                        key={note.id}
                         className="bg-white flex items-center justify-between rounded-lg gap-2 py-2 px-4"
                       >
                         <span className="font-medium text-xl">
                           {note.title}
                         </span>
-                        <ArrowForwardIcon />
+                        <div className="flex gap-2">
+                          <DeleteIcon onClick={()=> onDelete(note.id)} color="error"/>
+                          <ArrowForwardIcon/>
+                        </div>
                       </div>
                     ))}
                   </div>
