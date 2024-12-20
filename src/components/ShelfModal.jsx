@@ -9,6 +9,7 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import StarIcon from "@mui/icons-material/Star";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import BookStatusDropdown from "./BookStatusDropdown";
 
 const ShelfModal = () => {
@@ -90,7 +91,7 @@ const ShelfModal = () => {
               </div>
               {/* Notes */}
               <div className="flex flex-col">
-                <h3 className="text-2xl mt-3 font-semibold">Your Notes</h3>
+                <h3 className="text-2xl mt-3 font-semibold flex items-center pr-7">Your Notes <AddCircleOutlineIcon fontSize="large" className="ml-auto"/> </h3>
                 <div className="flex flex-col pt-2 gap-3 overflow-y-auto scrollbar pr-3">
                   {notes.map((note, index) => (
                     <div

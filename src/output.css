@@ -910,6 +910,10 @@ video {
   padding-top: 2rem;
 }
 
+.pr-7 {
+  padding-right: 1.75rem;
+}
+
 .text-center {
   text-align: center;
 }
