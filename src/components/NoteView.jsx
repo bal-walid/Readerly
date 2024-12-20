@@ -41,9 +41,12 @@ const NoteView = () => {
       <div className="bg-white h-screen w-screen">
         <p
           onClick={() => router.navigate(`/shelf/${id}`)}
-          className="flex gap-2 items-center pt-2 px-2 italic text-text-secondary cursor-pointer hover:text-text-main"
+          className="flex justify-between items-center pt-2 px-2 italic text-text-secondary cursor-pointer hover:text-text-main"
         >
-          <ArrowBackIcon fontSize="small" /> {noteContent.bookTitle}
+          <span className="inline-flex items-center gap-2">
+            <ArrowBackIcon fontSize="small" /> {noteContent.bookTitle}
+          </span>
+          <button onClick={(e) => {e.stopPropagation(); router.navigate(`/shelf/${id}/notes/edit/${noteId}`)} } className="bg-[#2d2d6f] text-white px-4 py-1 mr-4 rounded-md">Edit</button>
         </p>
         <h1 className="border-b-[1px] border-b-[#cde4da] text-3xl px-2 h-[10%] flex items-center">
           {noteContent.title}

@@ -85,6 +85,29 @@ const addNote = async (id, noteContent) => {
   }
 };
 
+export const editNote = async (bookId, noteId, updatedNote) => {
+  try {
+    const book = await db.shelf.get(bookId);
+    if (!book) {
+      throw new Error(`Book with ID ${bookId} not found.`);
+    }
+    if (!book.notes || book.notes.length === 0) {
+      throw new Error(`No notes found for book with ID ${bookId}.`);
+    }
+    const noteIndex = book.notes.findIndex(note => note.id == noteId);
+    if (noteIndex === -1) {
+      throw new Error(`Note with ID ${noteId} not found.`);
+    }
+    book.notes[noteIndex] = { ...book.notes[noteIndex], ...updatedNote };
+    await db.shelf.put(book);
+    console.log(`Note with ID ${noteId} updated for book with ID ${bookId}.`);
+  } catch (error) {
+    console.error("Error editing note:", error);
+    throw error;
+  }
+};
+
+
 const getNoteById = async (bookId, noteId) => {
   console.log(bookId, noteId);
   try {

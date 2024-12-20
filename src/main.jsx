@@ -28,6 +28,10 @@ const router = createBrowserRouter([
             element: <NoteEditor />,
           },
           {
+            path: ":id/notes/edit/:noteId",
+            element: <NoteEditor/>
+          },
+          {
             path: ":id/notes/:noteId",
             element: <NoteView/>
           }

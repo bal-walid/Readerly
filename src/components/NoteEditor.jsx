@@ -4,16 +4,21 @@ import "easymde/dist/easymde.min.css";
 import "../assets/styles/easymde-override.css";
 import { useMemo, useCallback, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { addNote } from "../utils/db";
+import { addNote, editNote, getNoteById } from "../utils/db";
 import router from "../main";
+import useFetch from "../hooks/useFetch";
 
 const NoteEditor = () => {
   const mdeInstance = useRef(null);
   const titleRef = useRef(null);
+  const {id, noteId} = useParams();
+  const [noteContent, loading, error] = useFetch(getNoteById, [id, noteId], (note) => console.log(note), noteId);
   const getMdeInstanceCallback = useCallback((simpleMde) => {
     mdeInstance.current = simpleMde;
-  }, []);
-  const {id} = useParams();
+    if (noteContent) {
+      simpleMde.value(noteContent.markdown);
+    }
+  }, [noteContent]);
   const options = useMemo(() => {
     return {
       spellChecker: false,
@@ -37,8 +42,14 @@ const NoteEditor = () => {
               const markdown = mdeInstance.current.value();
               const title = titleRef.current.value;
               const newNote = {title, markdown};
-              await addNote(id, newNote);
-              router.navigate(`/shelf/${id}`);
+              if (noteId) {
+                await editNote(id, noteId, newNote);
+                router.navigate(`/shelf/${id}/notes/${noteId}`);
+              } else {
+                await addNote(id, newNote);
+                router.navigate(`/shelf/${id}`);
+              }
+              
             }
           },
           className: "fa fa-save",
@@ -47,6 +58,9 @@ const NoteEditor = () => {
       ],
     };
   }, [mdeInstance, titleRef]);
+  if (loading) {
+    return "Loading...";
+  }
   return (
     <ModalWrapper z={20}>
       <div className="bg-white h-full w-full">
@@ -55,6 +69,7 @@ const NoteEditor = () => {
             placeholder="Title"
             className="text-3xl font-header font-semibold px-2 h-full w-full focus:outline-none"
             ref={titleRef}
+            defaultValue={noteContent ? noteContent.title : ''}
           />
         </div>
         <div className="h-[90%]">
