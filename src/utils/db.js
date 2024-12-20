@@ -101,7 +101,7 @@ const getNoteById = async (bookId, noteId) => {
     }
 
     console.log(`Note with ID ${noteId} retrieved from book with ID ${bookId}:`, note);
-    return note;
+    return {...note, bookTitle: book.title};
   } catch (error) {
     console.error("Error retrieving note:", error);
     throw error;
