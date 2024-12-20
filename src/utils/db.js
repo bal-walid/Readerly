@@ -55,5 +55,23 @@ const updateBookStatus = async (id, status) => {
   console.log(await db.shelf.update(id, {status}));
 }
 
+const addNote = async (id, note) => {
+  try {
+    const book = await db.shelf.get(id);
+    if (!book) {
+      throw new Error(`Book with ID ${id} not found.`);
+    }
+    if (!book.notes) {
+      book.notes = [];
+    }
+    book.notes.push(note);
+    await db.shelf.put(book);
+    console.log(`Note added to book with ID ${id}.`);
+  } catch (error) {
+    console.error("Error adding note:", error);
+    throw error;
+  }
+};
 
-export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus };
+
+export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus, addNote };
