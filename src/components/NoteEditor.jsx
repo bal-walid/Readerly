@@ -2,8 +2,9 @@ import ModalWrapper from "./ModalWrapper";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import "../assets/styles/easymde-override.css";
-import { useMemo, useCallback, useState, useRef } from "react";
-
+import { useMemo, useCallback, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { addNote } from "../utils/db";
 
 
 const NoteEditor = () => {
@@ -12,8 +13,10 @@ const NoteEditor = () => {
   const getMdeInstanceCallback = useCallback((simpleMde) => {
     mdeInstance.current = simpleMde;
   }, []);
+  const {id} = useParams();
   const options = useMemo(() => {
     return {
+      spellChecker: false,
       toolbar: [
         "bold",
         "italic",
@@ -28,13 +31,13 @@ const NoteEditor = () => {
         "|",
         {
           name: "save",
-          action: () => {
+          action: async () => {
             console.log('run');
             if (mdeInstance && titleRef) {
               const markdown = mdeInstance.current.value();
               const title = titleRef.current.value;
               const newNote = {title, markdown};
-              console.log(newNote);
+              await addNote(id, newNote);
             }
           },
           className: "fa fa-save",
@@ -55,6 +58,7 @@ const NoteEditor = () => {
         </div>
         <div className="h-[90%]">
           <SimpleMDE
+          id="simplemde-editor"
             options={options}
             getMdeInstance={getMdeInstanceCallback}
           />
