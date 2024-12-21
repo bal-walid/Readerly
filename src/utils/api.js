@@ -2,7 +2,7 @@ import formatText from "./formatText";
 
 const API_BASE = `https://openlibrary.org/`;
 const default_fields =
-  "&fields=key,title,author_name,author_key,first_publish_year,cover_i,ratings_average,ratings_count";
+  "&fields=key,title,author_name,author_key,first_publish_year,cover_i,ratings_average,ratings_count,isbn";
 const pagination_params = (limit, page) => `&limit=${limit}&page=${page}`;
 
 const mapBooksResponse = (data) => {
@@ -14,7 +14,8 @@ const mapBooksResponse = (data) => {
     cover: doc.cover_i || null,
     publishDate: doc.first_publish_year || "Unknown Year",
     rating: doc.ratings_average ? Number(doc.ratings_average).toFixed(2) : null,
-    ratingCount: doc.ratings_count || null
+    ratingCount: doc.ratings_count || null,
+    isbn: doc.isbn[0]
   }));
 };
 
