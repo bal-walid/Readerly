@@ -1,10 +1,7 @@
 import { useState } from "react";
-import {
-  useOutletContext,
-  useParams,
-} from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { findShelfBookById, updateBookStatus, deleteNote } from "../utils/db";
+import { findShelfBookById, updateBookStatus, deleteNote, removeBookFromShelf } from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -12,6 +9,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import BookStatusDropdown from "./BookStatusDropdown";
 import router from "../main";
 import DeleteIcon from "@mui/icons-material/Delete";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+
 
 const ShelfModal = () => {
   const { id } = useParams();
@@ -19,6 +18,10 @@ const ShelfModal = () => {
   const onDelete = async (noteId) => {
     await deleteNote(id, noteId);
     setNotes((notes) => notes.filter((note) => note.id !== noteId));
+  };
+  const onRemoveFromShelf = async () => {
+    await removeBookFromShelf(id);
+    router.navigate('/shelf');
   }
   const [book, setBook] = useState(null);
   const [dbBook, loading, error] = useFetch(findShelfBookById, [id], (book) => {
@@ -65,6 +68,12 @@ const ShelfModal = () => {
                       setBook({ ...book, status });
                   }}
                 />
+                <button
+                  onClick={onRemoveFromShelf}
+                  className="btn text-red-500 flex items-center gap-2 text-sm"
+                >
+                  <BookmarkRemoveIcon fontSize="small" /> Remove From Shelf
+                </button>
               </div>
             </div>
             {/* Main */}
@@ -96,21 +105,28 @@ const ShelfModal = () => {
                     />{" "}
                   </h3>
                   <div className="flex flex-col pt-2 gap-3 overflow-y-auto scrollbar pr-3">
-                    {notes && notes.map((note) => (
-                      <div
-                        onClick = {() => router.navigate(`./notes/${note.id}`)}
-                        key={note.id}
-                        className="bg-white cursor-pointer hover:bg-slate-200 hover:bg-opacity-50 flex items-center justify-between rounded-lg gap-2 py-2 px-4"
-                      >
-                        <span className="font-medium text-xl">
-                          {note.title}
-                        </span>
-                        <div className="flex gap-2">
-                          <DeleteIcon onClick={(e)=> {onDelete(note.id); e.stopPropagation()}} color="error"/>
-                          <ArrowForwardIcon className="hover:text-main"/>
+                    {notes &&
+                      notes.map((note) => (
+                        <div
+                          onClick={() => router.navigate(`./notes/${note.id}`)}
+                          key={note.id}
+                          className="bg-white cursor-pointer hover:bg-slate-200 hover:bg-opacity-50 flex items-center justify-between rounded-lg gap-2 py-2 px-4"
+                        >
+                          <span className="font-medium text-xl">
+                            {note.title}
+                          </span>
+                          <div className="flex gap-2">
+                            <DeleteIcon
+                              onClick={(e) => {
+                                onDelete(note.id);
+                                e.stopPropagation();
+                              }}
+                              color="error"
+                            />
+                            <ArrowForwardIcon className="hover:text-main" />
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>

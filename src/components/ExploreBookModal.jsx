@@ -13,7 +13,6 @@ const ExploreBookModal = ({
   synopsis,
   synopsisLoading,
   inCollections,
-  inCollectionsLoading,
   onAddToShelf,
   onAddToWishlist,
   onRemoveFromShelf,
@@ -22,7 +21,6 @@ const ExploreBookModal = ({
   const coverUrl = book.cover
     ? `https://covers.openlibrary.org/b/id/${book.cover}-L.jpg`
     : null;
-  console.log(inCollections);
   return (
     <ModalWrapper onClose={close}>
       <div
