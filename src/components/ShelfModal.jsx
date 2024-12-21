@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { findShelfBookById, updateBookStatus, deleteNote, removeBookFromShelf } from "../utils/db";
+import {
+  findShelfBookById,
+  updateBookStatus,
+  deleteNote,
+  removeBookFromShelf,
+} from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -10,7 +15,6 @@ import BookStatusDropdown from "./BookStatusDropdown";
 import router from "../main";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
-
 
 const ShelfModal = () => {
   const { close, setBooks } = useOutletContext();
@@ -23,8 +27,8 @@ const ShelfModal = () => {
   const onRemoveFromShelf = async () => {
     await removeBookFromShelf(id);
     setBooks((books) => books.filter((book) => book.id != id));
-    router.navigate('/shelf');
-  }
+    router.navigate("/shelf");
+  };
   const [book, setBook] = useState(null);
   const [dbBook, loading, error] = useFetch(findShelfBookById, [id], (book) => {
     setBook(book);
@@ -67,6 +71,15 @@ const ShelfModal = () => {
                   onStatusChange={(status) => {
                     updateBookStatus(book.id, status),
                       setBook({ ...book, status });
+                    setBooks((books) =>
+                      books.map((book) => {
+                        if (book.id == id) {
+                          return { ...book, status };
+                        } else {
+                          return book;
+                        }
+                      })
+                    );
                   }}
                 />
                 <button
