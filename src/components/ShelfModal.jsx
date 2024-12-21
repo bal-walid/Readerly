@@ -1,7 +1,5 @@
 import { useState } from "react";
 import {
-  Outlet,
-  useLocation,
   useOutletContext,
   useParams,
 } from "react-router-dom";
@@ -120,7 +118,6 @@ const ShelfModal = () => {
           </div>
         </div>
       </ModalWrapper>
-      <Outlet />
     </>
   );
 };
