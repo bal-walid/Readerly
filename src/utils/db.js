@@ -1,5 +1,5 @@
 import Dexie from "dexie";
-const db = new Dexie("books");
+export const db = new Dexie("books");
 db.version(1).stores({
   shelf: "id, status",
   wishlist: "id",
