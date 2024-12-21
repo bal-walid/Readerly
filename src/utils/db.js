@@ -45,8 +45,17 @@ const getShelfBooks = async () => {
   return await db.shelf.toArray(); // Fetch all books from the books table
 };
 
+const getWishlistBooks = async () => {
+  return await db.wishlist.toArray(); // Fetch all books from the books table
+};
+
 const findShelfBookById = async (id) => {
   const book = await (db.shelf.where('id').equals(id).first());
+  return book;
+};
+
+const findWishListBookById = async (id) => {
+  const book = await (db.wishlist.where('id').equals(id).first());
   return book;
 };
 
@@ -156,4 +165,4 @@ const deleteNote = async (bookId, noteId) => {
 };
 
 
-export { addBookToShelf, addBookToWishlist, getShelfStats, getShelfBooks, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote };
+export { addBookToShelf, addBookToWishlist, getWishlistBooks, getShelfStats, getShelfBooks, findWishListBookById, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote };
