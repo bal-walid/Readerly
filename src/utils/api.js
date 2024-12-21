@@ -94,3 +94,20 @@ export const fetchSynopsis = async (workId) => {
     throw error;
   }
 };
+
+export const getExternalLinks = (book) => {
+  const openLibraryLink = `${API_BASE}works/${book.id}`;
+  if (!book.isbn) {
+    return {openLibrary: openLibraryLink};
+  }
+
+  const amazonLink = `https://www.amazon.com/s?k=${book.isbn}`;
+  const goodreadsLink = `https://www.goodreads.com/search?q=${book.isbn}&search_type=books`;
+  
+
+  return {
+    amazon: amazonLink,
+    goodreads: goodreadsLink,
+    openLibrary: openLibraryLink,
+  };
+};
