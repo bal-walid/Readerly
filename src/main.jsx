@@ -7,6 +7,8 @@ import NoteEditor from "./components/NoteEditor.jsx";
 import NoteView from "./components/NoteView.jsx";
 import Shelf from "./components/Shelf.jsx";
 import ShelfModal from "./components/ShelfModal.jsx";
+import WishList from "./components/WishList.jsx";
+import WishListModal from "./components/WishListModal.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,16 +31,20 @@ const router = createBrowserRouter([
           },
           {
             path: ":id/notes/edit/:noteId",
-            element: <NoteEditor/>
+            element: <NoteEditor />,
           },
           {
             path: ":id/notes/:noteId",
-            element: <NoteView/>
-          }
+            element: <NoteView />,
+          },
         ],
       },
       { path: "/home" },
-      { path: "/wishlist" },
+      {
+        path: "/wishlist",
+        element: <WishList />,
+        children: [{ path: ":id", element: <WishListModal /> }],
+      },
     ],
   },
 ]);
