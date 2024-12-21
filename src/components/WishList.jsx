@@ -23,7 +23,7 @@ const WishList = () => {
     <>
       <h1 className="primary-header mb-6">Your Wishlist</h1>
       <BookGrid onCardClick={openBookModal} books={books} />
-      <Outlet context={{ close: closeBookModal }} />
+      <Outlet context={{ close: closeBookModal, setBooks }} />
     </>
   );
 };

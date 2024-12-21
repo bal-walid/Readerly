@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { findWishListBookById } from "../utils/db";
+import { findWishListBookById, addBookToShelf, removeBookFromWishlist } from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import StarIcon from "@mui/icons-material/Star";
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import { getExternalLinks } from "../utils/api";
 import goodreadsIcon from "../assets/images/goodreads.svg";
 import amazonIcon from "../assets/images/amazon.svg";
 import openLibraryIcon from "../assets/images/openLibrary.png";
+import router from "../main";
 
 const WishListModal = () => {
   const { id } = useParams();
@@ -20,8 +22,17 @@ const WishListModal = () => {
       setBook(book);
     }
   );
-  const { close } = useOutletContext();
+  const { close, setBooks } = useOutletContext();
   const links = book && getExternalLinks(book);
+  const onRemoveFromWishlist = async () => {
+    await removeBookFromWishlist(id);
+    setBooks((books) => books.filter((book) => book.id != id));
+    router.navigate('..');
+  }
+  const onSendToShelf = async () => {
+    await onRemoveFromWishlist();
+    await addBookToShelf(book, book.bio, book.synopsis);
+  }
   const coverUrl =
     book && book.cover
       ? `https://covers.openlibrary.org/b/id/${book.cover}-L.jpg`
@@ -47,7 +58,17 @@ const WishListModal = () => {
               />
               {book.title}
             </h2>
-            <div className="flex ml-auto gap-5"></div>
+            <div className="flex ml-auto gap-5">
+              <button
+              onClick={onSendToShelf}
+                className="btn text-green-500 flex items-center gap-2 text-sm"
+              >
+                <BookmarkAddOutlinedIcon fontSize="small" /> Send To Shelf
+              </button>
+              <button onClick={onRemoveFromWishlist} className="btn text-red-500 flex items-center gap-2 text-sm">
+                <StarIcon fontSize="small" /> Remove From Wishlist
+              </button>
+            </div>
           </div>
           {/* Main */}
           <div className="pt-6 flex gap-9 flex-1 min-h-0">
@@ -93,11 +114,29 @@ const WishListModal = () => {
                 <div className="overflow-y-auto scrollbar pr-3 flex-1 flex flex-col gap-4 items-center">
                   {book.isbn && (
                     <>
-                      <a className="p-2 rounded-lg shadow-btn-shadow w-1/2 gap-2 flex items-center bg-[#313131] text-white font-header font-semibold" href={links.amazon}><img className="w-6 h-6" src={amazonIcon} alt="" /> Buy on amazon</a>
-                      <a className="p-2 rounded-lg shadow-btn-shadow w-1/2 gap-2 flex items-center bg-[#EBE8D3] text-[#938779] font-header font-semibold" href={links.goodreads}><img className="w-6 h-6" src={goodreadsIcon} alt="" />Read reviews on goodreads</a>
+                      <a
+                        className="p-2 rounded-lg shadow-btn-shadow w-1/2 gap-2 flex items-center bg-[#313131] text-white font-header font-semibold"
+                        href={links.amazon}
+                      >
+                        <img className="w-6 h-6" src={amazonIcon} alt="" /> Buy
+                        on amazon
+                      </a>
+                      <a
+                        className="p-2 rounded-lg shadow-btn-shadow w-1/2 gap-2 flex items-center bg-[#EBE8D3] text-[#938779] font-header font-semibold"
+                        href={links.goodreads}
+                      >
+                        <img className="w-6 h-6" src={goodreadsIcon} alt="" />
+                        Read reviews on goodreads
+                      </a>
                     </>
                   )}
-                  <a className="p-2 rounded-lg shadow-btn-shadow w-1/2 gap-2 flex items-center bg-[#E2DCC5] text-[#5E92C3] font-header font-semibold" href={links.openLibrary}><img className="w-6 h-6" src={openLibraryIcon} alt="" />See on OpenLibrary</a>
+                  <a
+                    className="p-2 rounded-lg shadow-btn-shadow w-1/2 gap-2 flex items-center bg-[#E2DCC5] text-[#5E92C3] font-header font-semibold"
+                    href={links.openLibrary}
+                  >
+                    <img className="w-6 h-6" src={openLibraryIcon} alt="" />
+                    See on OpenLibrary
+                  </a>
                 </div>
               </div>
             </div>
