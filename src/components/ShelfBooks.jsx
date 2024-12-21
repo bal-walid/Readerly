@@ -70,7 +70,7 @@ const ShelfBooks = () => {
       </h2>
       {loading && "Loading"}
       {books && <BookGrid onCardClick={openBookModal} books={getFilteredBooks()} />}
-      <Outlet context={{ close: closeBookModal }} />
+      <Outlet context={{ close: closeBookModal, setBooks }} />
     </>
   );
 };

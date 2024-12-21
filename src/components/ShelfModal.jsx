@@ -13,6 +13,7 @@ import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 
 
 const ShelfModal = () => {
+  const { close, setBooks } = useOutletContext();
   const { id } = useParams();
   const [notes, setNotes] = useState(null);
   const onDelete = async (noteId) => {
@@ -21,6 +22,7 @@ const ShelfModal = () => {
   };
   const onRemoveFromShelf = async () => {
     await removeBookFromShelf(id);
+    setBooks((books) => books.filter((book) => book.id != id));
     router.navigate('/shelf');
   }
   const [book, setBook] = useState(null);
@@ -28,7 +30,6 @@ const ShelfModal = () => {
     setBook(book);
     setNotes(book.notes || null);
   });
-  const { close } = useOutletContext();
   const coverUrl =
     book && book.cover
       ? `https://covers.openlibrary.org/b/id/${book.cover}-L.jpg`
