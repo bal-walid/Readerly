@@ -15,7 +15,7 @@ const mapBooksResponse = (data) => {
     publishDate: doc.first_publish_year || "Unknown Year",
     rating: doc.ratings_average ? Number(doc.ratings_average).toFixed(2) : null,
     ratingCount: doc.ratings_count || null,
-    isbn: doc.isbn[0]
+    isbn: doc.isbn ? doc.isbn[0] : null
   }));
 };
 
