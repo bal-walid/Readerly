@@ -1,9 +1,9 @@
 import { useBookDetails } from "../hooks/useBooksDetails";
-import { addBookToShelf, addBookToWishlist } from "../utils/db";
+import { addBookToShelf, addBookToWishlist, removeBookFromShelf, removeBookFromWishlist } from "../utils/db";
 import ExploreBookModal from "./ExploreBookModal";
 
 const ExploreBookContainer = ({ book, close }) => {
-  const { bio, bioLoading, synopsis, synopsisLoading } = useBookDetails(book);
+  const { bio, bioLoading, synopsis, synopsisLoading, inCollections, inCollectionsLoading } = useBookDetails(book);
 
   const handleAddToShelf = (book, bio, synopsis) => {
     addBookToShelf(book, bio, synopsis);
@@ -13,6 +13,13 @@ const ExploreBookContainer = ({ book, close }) => {
     addBookToWishlist(book, bio, synopsis);
   };
 
+  const handleRemoveFromShelf = (book) => {
+    removeBookFromShelf(book);
+  }
+
+  const handleRemoveFromWishlist = (book) => {
+    removeBookFromWishlist(book);
+  }
   return (
     <ExploreBookModal
       book={book}
@@ -21,8 +28,12 @@ const ExploreBookContainer = ({ book, close }) => {
       bioLoading={bioLoading}
       synopsis={synopsis}
       synopsisLoading={synopsisLoading}
+      inCollections={inCollections}
+      inCollectionsLoading={inCollectionsLoading}
       onAddToShelf={handleAddToShelf}
       onAddToWishlist={handleAddToWishlist}
+      onRemoveFromShelf={handleRemoveFromShelf}
+      onRemoveFromWishlist={handleRemoveFromWishlist}
     />
   );
 };

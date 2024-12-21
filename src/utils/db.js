@@ -28,6 +28,14 @@ const addBookToWishlist = async (book, authorBio, synopsis) => {
   return await db.wishlist.add({ ...book, authorBio, synopsis });
 };
 
+const removeBookFromShelf = async (bookId) => {
+  return await db.shelf.delete(bookId);
+};
+
+const removeBookFromWishlist = async (bookId) => {
+  return await db.wishlist.delete(bookId);
+};
+
 const getShelfStats = async () => {
 
   const stats = {};
@@ -140,6 +148,27 @@ const getNoteById = async (bookId, noteId) => {
   }
 };
 
+const bookInCollections = async (bookId) => {
+  try {
+    const [shelfBook, wishlistBook] = await Promise.all([
+      db.shelf.get(bookId),
+      db.wishlist.get(bookId),
+    ]);
+
+    return {
+      inShelf: !!shelfBook, // true if the book exists in the shelf
+      inWishlist: !!wishlistBook, // true if the book exists in the wishlist
+    };
+  } catch (error) {
+    console.error("Error checking if book exists in collections:", error);
+    return {
+      shelf: false,
+      wishlist: false,
+    };
+  }
+};
+
+
 
 const deleteNote = async (bookId, noteId) => {
   try {
@@ -165,4 +194,4 @@ const deleteNote = async (bookId, noteId) => {
 };
 
 
-export { addBookToShelf, addBookToWishlist, getWishlistBooks, getShelfStats, getShelfBooks, findWishListBookById, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote };
+export { addBookToShelf, addBookToWishlist, getWishlistBooks, getShelfStats, getShelfBooks, findWishListBookById, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote, bookInCollections, removeBookFromShelf, removeBookFromWishlist };

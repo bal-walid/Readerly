@@ -644,10 +644,6 @@ video {
   height: 100vh;
 }
 
-.h-7 {
-  height: 1.75rem;
-}
-
 .min-h-0 {
   min-height: 0px;
 }
@@ -705,10 +701,6 @@ video {
   width: 100vw;
 }
 
-.w-7 {
-  width: 1.75rem;
-}
-
 .min-w-0 {
   min-width: 0px;
 }
@@ -737,16 +729,12 @@ video {
   grid-template-rows: 30% minmax(0,1fr);
 }
 
-.grid-rows-\[auto_30\%_minmax\(0\2c 1fr\)\] {
-  grid-template-rows: auto 30% minmax(0,1fr);
+.grid-rows-\[auto_40\%_minmax\(0\2c 1fr\)\] {
+  grid-template-rows: auto 40% minmax(0,1fr);
 }
 
 .grid-rows-\[auto_minmax\(0\2c 1fr\)_minmax\(0\2c 1fr\)\] {
   grid-template-rows: auto minmax(0,1fr) minmax(0,1fr);
-}
-
-.grid-rows-\[auto_40\%_minmax\(0\2c 1fr\)\] {
-  grid-template-rows: auto 40% minmax(0,1fr);
 }
 
 .flex-col {
@@ -884,6 +872,11 @@ video {
   background-color: rgb(49 49 49 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#E2DCC5\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 220 197 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[\#EBE8D3\] {
   --tw-bg-opacity: 1;
   background-color: rgb(235 232 211 / var(--tw-bg-opacity, 1));
@@ -907,11 +900,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#E2DCC5\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 220 197 / var(--tw-bg-opacity, 1));
 }
 
 .bg-opacity-50 {
@@ -1073,9 +1061,19 @@ video {
   color: rgb(77 77 77 / var(--tw-text-opacity, 1));
 }
 
+.text-\[\#5E92C3\] {
+  --tw-text-opacity: 1;
+  color: rgb(94 146 195 / var(--tw-text-opacity, 1));
+}
+
 .text-\[\#8A8A8A\] {
   --tw-text-opacity: 1;
   color: rgb(138 138 138 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#938779\] {
+  --tw-text-opacity: 1;
+  color: rgb(147 135 121 / var(--tw-text-opacity, 1));
 }
 
 .text-\[\#DBC332\] {
@@ -1108,14 +1106,9 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.text-\[\#938779\] {
+.text-red-500 {
   --tw-text-opacity: 1;
-  color: rgb(147 135 121 / var(--tw-text-opacity, 1));
-}
-
-.text-\[\#5E92C3\] {
-  --tw-text-opacity: 1;
-  color: rgb(94 146 195 / var(--tw-text-opacity, 1));
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 
 .shadow-btn-shadow {

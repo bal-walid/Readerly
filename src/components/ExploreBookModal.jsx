@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 
 const ExploreBookModal = ({
   book,
@@ -11,13 +12,17 @@ const ExploreBookModal = ({
   bioLoading,
   synopsis,
   synopsisLoading,
+  inCollections,
+  inCollectionsLoading,
   onAddToShelf,
   onAddToWishlist,
+  onRemoveFromShelf,
+  onRemoveFromWishlist
 }) => {
   const coverUrl = book.cover
     ? `https://covers.openlibrary.org/b/id/${book.cover}-L.jpg`
     : null;
-
+  console.log(inCollections);
   return (
     <ModalWrapper onClose={close}>
       <div
@@ -30,18 +35,41 @@ const ExploreBookModal = ({
             {book.title}
           </h2>
           <div className="flex ml-auto gap-5">
-            <button
-              onClick={() => onAddToShelf(book, bio, synopsis)}
-              className="btn text-green-500 flex items-center gap-2 text-sm"
-            >
-              <BookmarkAddOutlinedIcon fontSize="small" /> Add To Shelf
-            </button>
-            <button
-              onClick={() => onAddToWishlist(book, bio, synopsis)}
-              className="btn text-[#DBC332] flex items-center gap-2 text-sm"
-            >
-              <StarBorderOutlinedIcon fontSize="small" /> Add To Wishlist
-            </button>
+            {inCollections && (
+              <>
+                {!inCollections.inShelf ? (
+                  <button
+                    onClick={() => onAddToShelf(book, bio, synopsis)}
+                    className="btn text-green-500 flex items-center gap-2 text-sm"
+                  >
+                    <BookmarkAddOutlinedIcon fontSize="small" /> Add To Shelf
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => onRemoveFromShelf(book.id)}
+                    className="btn text-red-500 flex items-center gap-2 text-sm"
+                  >
+                    <BookmarkRemoveIcon fontSize="small" /> Remove From Shelf
+                  </button>
+                )}
+                {!inCollections.inWishlist ? (
+                  <button
+                    onClick={() => onAddToWishlist(book, bio, synopsis)}
+                    className="btn text-[#DBC332] flex items-center gap-2 text-sm"
+                  >
+                    <StarBorderOutlinedIcon fontSize="small" /> Add To Wishlist
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => onRemoveFromWishlist(book.id)}
+                    className="btn text-red-500 flex items-center gap-2 text-sm"
+                  >
+                    <StarIcon fontSize="small" /> Remove From Wishlist
+                  </button>
+                )}
+              </>
+            )}
+
             <button className="text-main">
               <CloseIcon onClick={close} fontSize="large" />
             </button>
