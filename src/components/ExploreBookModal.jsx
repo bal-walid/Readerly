@@ -4,6 +4,7 @@ import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import { fontSize } from "@mui/system";
 
 const ExploreBookModal = ({
   book,
@@ -87,16 +88,19 @@ const ExploreBookModal = ({
           <div className="h-full grid grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)]">
             {/* Ratings */}
             {/* Ratings */}
-            <p className="flex items-center gap-3">
+            <p className="flex items-center gap-3 max-[1100px]:text-sm max-[1100px]:gap-2">
               <StarIcon
-                fontSize="large"
-                className={book.rating ? "text-main" : "text-text-secondary"}
+                sx={{      fontSize: {
+                  md: '24px',   // For medium screens
+                  lg: '35px', // For large screens
+                }}}
+                className={(book.rating ? "text-main" : "text-text-secondary") + " text-xs"}
               />
               {book.rating ? (
                 <>
                   <span>
                     {book.rating}{" "}
-                    <span className="font-semibold text-lg">/ 5</span>
+                    <span className="font-semibold">/ 5</span>
                   </span>
                   Average Rating on OpenLibrary
                   <span className="text-secondary text-sm italic">

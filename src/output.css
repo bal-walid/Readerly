@@ -1045,6 +1045,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1333,6 +1338,17 @@ h1,h2,h3,h4,h5,h6 {
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+@media (max-width: 1100px) {
+  .max-\[1100px\]\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  .max-\[1100px\]\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
 
 @media not all and (min-width: 1024px) {
