@@ -50,22 +50,22 @@ const ShelfModal = () => {
           className="bg-white h-full w-full flex items-center justify-center"
         >
           <div
-            className="bg-primary rounded-md p-6 w-[90%] h-[90%] max-w-[1200px] flex flex-col"
+            className="max-lg:overflow-y-auto bg-primary rounded-md p-6 w-[90%] h-[90%] max-w-[1200px] flex flex-col max-lg:w-[60%] max-lg:h-[95%] max-md:w-[80%] max-sm:w-full max-sm:h-full max-sm:py-0"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
           >
-            <div className="flex items-center">
-              <h2 className="flex items-center gap-2 text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+            <div className="flex items-center max-lg:flex-col">
+            <h2 className="flex-1 text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis max-lg:whitespace-normal max-lg:overflow-visible max-lg:text-clip max-lg:relative max-lg:w-full max-lg:text-center max-lg:flex max-lg:flex-col">
                 <ArrowBackIcon
-                  className="cursor-pointer"
+                  className="cursor-pointer max-lg:my-4"
                   onClick={close}
                   fontSize="large"
                 />
                 {book.title}
               </h2>
-              <div className="flex ml-auto gap-5">
+              <div className="flex ml-auto max-lg:ml-0 max-lg:flex-col gap-5 max-lg:gap-2 max-lg:my-3">
                 <BookStatusDropdown
                   className={
-                    "flex items-center space-x-2 bg-white p-2 rounded-full shadow-btn-shadow cursor-pointer"
+                    "flex items-center space-x-2 bg-white p-2 rounded-full shadow-btn-shadow cursor-pointer text-sm font-body btn"
                   }
                   defaultValue={book.status}
                   onStatusChange={(status) => {
@@ -86,18 +86,18 @@ const ShelfModal = () => {
                   onClick={onRemoveFromShelf}
                   className="btn text-red-500 flex items-center gap-2 text-sm"
                 >
-                  <BookmarkRemoveIcon fontSize="small" /> Remove From Shelf
+                  <BookmarkRemoveIcon fontSize="small" /> <span className="flex-1">Remove From Shelf</span>
                 </button>
               </div>
             </div>
             {/* Main */}
-            <div className="pt-6 flex gap-9 flex-1 min-h-0">
+            <div className="pt-6 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
               <img
                 className="w-80 object-cover h-full border-[2px] border-silver rounded-md"
                 src={coverUrl}
                 alt="Book Cover"
               />
-              <div className="h-full grid grid-rows-[30%_minmax(0,1fr)] flex-1">
+              <div className="h-full grid max-lg:block grid-rows-[30%_minmax(0,1fr)] flex-1">
                 {/* Synopsis */}
                 <div className="flex flex-col">
                   <h3 className="text-2xl mt-3 font-semibold">Synopsis</h3>
@@ -109,7 +109,7 @@ const ShelfModal = () => {
                   ></p>
                 </div>
                 {/* Notes */}
-                <div className="flex flex-col">
+                <div className="flex flex-col max-lg:pb-4">
                   <h3 className="text-2xl mt-3 font-semibold flex items-center pr-7">
                     Your Notes{" "}
                     <AddCircleOutlineIcon
