@@ -11,7 +11,7 @@ const NavLink = ({ route }) => {
   return (
     <Link className={className} to={route.path}>
       <Icon fontSize="medium" />
-      <span>{route.name}</span>
+      <span className="max-sm:hidden">{route.name}</span>
     </Link>
   );
 };

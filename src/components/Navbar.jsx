@@ -20,7 +20,7 @@ const Navbar = () => (
     <h1 className="font-logo font-bold text-text-main text-4xl max-lg:hidden">
       Reader<span className="text-main">ly</span>
     </h1>
-    <div className="flex flex-col gap-6 max-lg:flex-row max-lg:w-full">
+    <div className="flex flex-col gap-6 max-lg:flex-row max-lg:w-full max-lg:justify-evenly">
       {routes.map((route) => (
         <NavLink key={route.name} route={route} />
       ))}
