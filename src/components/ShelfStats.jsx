@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { getShelfStats, db } from "../utils/db";
-
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';  
 
 const ShelfStats = () => {
   const [dbChangeTrigger, setDbChangeTrigger] = useState(0);
@@ -45,17 +46,42 @@ const ShelfStats = () => {
     "Completed",
   ];
 
+  const splideOptions = {
+    type: 'slide',
+    perPage: 5,
+    perMove: 1,
+    gap: '1rem',
+    pagination: false,
+    arrows: false,
+    breakpoints: {
+      1340: {
+        arrows: true,
+        perPage: 4,
+      },
+      1100: {
+        perPage: 3,
+      },
+      768: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 1,
+      },
+    }
+  };
+
   return (
-    <div className="font-header text-white flex gap-4">
-      {statKeys.map((status) => {
-        return (
-          <div className="flex flex-col items-center justify-center bg-stat-gradient rounded-2xl p-4 w-60" key={status}>
-            <p className="w-full font-medium text-lg text-center">{status}</p>
-            <p>{stats[status]}</p>
-            <p className="text-xs">Lorem Ipsum</p>
-          </div>
-        );
-      })}
+    <div className="font-header text-white w-full">
+      <Splide options={splideOptions} className="p-4">
+        {statKeys.map((status) => (
+          <SplideSlide key={status}>
+            <div className="flex flex-col items-center justify-center bg-main bg-opacity-90 rounded-2xl p-4 h-full">
+              <p className="w-full font-semibold text-xl text-center">{stats[status]}</p>
+              <p>{status}</p>
+            </div>
+          </SplideSlide>
+        ))}
+      </Splide>
     </div>
   );
 };
