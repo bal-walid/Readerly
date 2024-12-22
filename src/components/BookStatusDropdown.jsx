@@ -66,7 +66,7 @@ const BookStatusDropdown = ({
         value={selectedOption.label}
         onChange={handleStatusChange}
         onClick={(e) => e.stopPropagation()}
-        className="focus:outline-none"
+        className="focus:outline-none flex-1"
         style={{ color: selectedOption.color }}
       >
         {filterDropdown && <option>All Books</option>}

@@ -1056,6 +1056,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1385,9 +1390,54 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
+@media (max-width: 850px) {
+  .max-\[850px\]\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .max-\[850px\]\:items-center {
+    align-items: center;
+  }
+}
+
 @media not all and (min-width: 640px) {
   .max-sm\:hidden {
     display: none;
+  }
+
+  .max-sm\:w-full {
+    width: 100%;
+  }
+
+  .max-sm\:w-3\/5 {
+    width: 60%;
+  }
+
+  .max-sm\:w-4\/5 {
+    width: 80%;
+  }
+
+  .max-sm\:flex-col {
+    flex-direction: column;
+  }
+
+  .max-sm\:gap-6 {
+    gap: 1.5rem;
+  }
+
+  .max-sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .max-\[375px\]\:w-4\/5 {
+    width: 80%;
+  }
+
+  .max-\[375px\]\:w-full {
+    width: 100%;
   }
 }
 
@@ -1400,5 +1450,15 @@ h1,h2,h3,h4,h5,h6 {
     .min-\[500px\]\:max-sm\:justify-center {
       justify-content: center;
     }
+  }
+}
+
+@media (min-width: 850px) {
+  .min-\[850px\]\:ml-auto {
+    margin-left: auto;
+  }
+
+  .min-\[850px\]\:ml-\[1\/2\] {
+    margin-left: 1/2;
   }
 }

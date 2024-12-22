@@ -56,16 +56,16 @@ const ShelfBooks = () => {
 
   return (
     <>
-      <h2 className="secondary-header my-6 flex items-center gap-8">
+      <h2 className="secondary-header my-6 flex items-center gap-8 max-sm:gap-6 max-sm:flex-col">
         Your Books{" "}
-        <div className="flex gap-4 w-3/5">
+        <div className="flex gap-4 w-3/5  max-sm:w-4/5 min-[850px]:ml-auto max-[850px]:flex-1 max-[850px]:items-center max-sm:flex-col ">
           <BookStatusDropdown
-            className="flex items-center text-md p-2 bg-white rounded-full shadow-btn-shadow cursor-pointer"
+            className="max-sm:w-full text-base font-body flex items-center text-md p-2 bg-white rounded-full shadow-btn-shadow cursor-pointer"
             defaultValue="All Books"
             onStatusChange={handleFilter}
             filterDropdown={true}
           />
-          <SearchInput handleSearch={handleSearch} instantSearch={true} />
+          <SearchInput inputFlex1={true} className="max-sm:w-full" handleSearch={handleSearch} instantSearch={true} />
         </div>
       </h2>
       {loading && "Loading"}

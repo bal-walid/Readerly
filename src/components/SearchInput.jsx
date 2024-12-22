@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import Chevron from "@mui/icons-material/KeyboardArrowDown";
 
-const SearchInput = ({ handleSearch, instantSearch = false }) => {
+const SearchInput = ({ className= "" ,handleSearch, instantSearch = false, inputFlex1 = false }) => {
   const [params] = useSearchParams();
   const [query, setQuery] = useState(params.get("query") || "");
   const [criteria, setCriteria] = useState(params.get("criteria") || "title");
@@ -36,11 +36,11 @@ const SearchInput = ({ handleSearch, instantSearch = false }) => {
   };
 
   return (
-    <div className="flex text-[#4D4D4D] min-w-0">
+    <div className={`flex text-[#4D4D4D] min-w-0 text-base font-body ${className}` }>
       <select
         value={criteria}
         onChange={handleCriteriaChange}
-        className="text-[#4D4D4D] bg-[#F8F5F5] rounded-l-full text-center outline-none py-2 px-3"
+        className={"text-[#4D4D4D] bg-[#F8F5F5] rounded-l-full text-center outline-none py-2 px-3"}
       >
         <option value="title">Title</option>
         <option value="author">Author</option>
@@ -53,7 +53,7 @@ const SearchInput = ({ handleSearch, instantSearch = false }) => {
         onChange={handleQueryChange}
         onKeyUp={handleKeyUp}
         placeholder="Search..."
-        className="py-2 px-3 outline-none min-w-0"
+        className={`py-2 px-3 outline-none min-w-0 ${inputFlex1 ? 'flex-1' : ''}`}
       />
 
       <button
