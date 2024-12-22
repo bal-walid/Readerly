@@ -28,8 +28,8 @@ const ExploreBookModal = ({
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
       >
         {/* Header */}
-        <div className="flex items-center">
-          <h2 className="text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+        <div className="flex items-center gap-2">
+          <h2 className="flex-1 text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
             {book.title}
           </h2>
           <div className="flex ml-auto gap-5">
