@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Navbar/>
-      <main className='flex-1 overflow-y-auto bg-primary px-12 pt-8'>
+      <main className='flex-1 overflow-y-auto bg-primary px-12 pt-8 max-lg:pb-[40px]'>
         <SearchInput handleSearch={handleSearch}/>
         <Outlet/>
       </main>

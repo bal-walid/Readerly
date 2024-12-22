@@ -1354,6 +1354,10 @@ h1,h2,h3,h4,h5,h6 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
+
+  .max-lg\:pb-\[40px\] {
+    padding-bottom: 40px;
+  }
 }
 
 @media not all and (min-width: 640px) {
