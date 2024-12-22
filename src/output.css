@@ -793,10 +793,6 @@ video {
   gap: 2.25rem;
 }
 
-.gap-1 {
-  gap: 0.25rem;
-}
-
 .gap-y-6 {
   row-gap: 1.5rem;
 }
@@ -1290,11 +1286,28 @@ h1,h2,h3,h4,h5,h6 {
   line-height: 2.25rem;
 }
 
+@media not all and (min-width: 640px) {
+  .primary-header {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
 .secondary-header {
   font-size: 1.25rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
   color: rgb(96 96 96 / var(--tw-text-opacity, 1));
+}
+
+@media not all and (min-width: 640px) {
+  .secondary-header {
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 .hover\:bg-slate-200:hover {
