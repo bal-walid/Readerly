@@ -55,7 +55,7 @@ body {
 }
 
 #root {
-  @apply w-full h-full flex;
+  @apply w-full h-full flex relative;
 }
 
 .btn {

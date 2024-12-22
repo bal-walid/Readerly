@@ -1230,6 +1230,7 @@ body {
 }
 
 #root {
+  position: relative;
   display: flex;
   height: 100%;
   width: 100%;
@@ -1300,4 +1301,39 @@ h1,h2,h3,h4,h5,h6 {
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+@media not all and (min-width: 1024px) {
+  .max-lg\:absolute {
+    position: absolute;
+  }
+
+  .max-lg\:bottom-0 {
+    bottom: 0px;
+  }
+
+  .max-lg\:left-0 {
+    left: 0px;
+  }
+
+  .max-lg\:hidden {
+    display: none;
+  }
+
+  .max-lg\:w-full {
+    width: 100%;
+  }
+
+  .max-lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .max-lg\:p-0 {
+    padding: 0px;
+  }
+
+  .max-lg\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }

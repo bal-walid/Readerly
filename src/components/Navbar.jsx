@@ -15,13 +15,12 @@ const routes = [
   { name: "wishlist", path: "/wishlist", icon: { outlined: StarBorderOutlinedIcon, filled: StarIcon } },
 ];
 
-
 const Navbar = () => (
-  <div className="w-1/5 pt-12 gap-12 flex flex-col items-center shadow-nav-shadow z-10">
-    <h1 className="font-logo font-bold text-text-main text-4xl">
+  <div className={`bg-white w-1/5 pt-12 gap-12 flex flex-col items-center shadow-nav-shadow z-10 max-lg:absolute max-lg:bottom-0 max-lg:left-0 max-lg:w-full max-lg:py-2`}>
+    <h1 className="font-logo font-bold text-text-main text-4xl max-lg:hidden">
       Reader<span className="text-main">ly</span>
     </h1>
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 max-lg:flex-row max-lg:w-full">
       {routes.map((route) => (
         <NavLink key={route.name} route={route} />
       ))}
