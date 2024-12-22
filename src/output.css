@@ -1154,6 +1154,12 @@ video {
   overflow-wrap: anywhere;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "Caveat";
 
@@ -1222,7 +1228,7 @@ video {
 
 body {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   font-family: Inter, sans-serif;
   --tw-text-opacity: 1;
@@ -1326,10 +1332,6 @@ h1,h2,h3,h4,h5,h6 {
 
   .max-lg\:flex-row {
     flex-direction: row;
-  }
-
-  .max-lg\:p-0 {
-    padding: 0px;
   }
 
   .max-lg\:py-2 {

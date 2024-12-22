@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 @font-face {
   font-family: "Caveat";
   src: url("./assets/fonts/Caveat/Caveat-VariableFont_wght.ttf")
@@ -51,7 +58,7 @@
 }
 
 body {
-  @apply relative w-full h-screen text-text-main font-body;
+  @apply relative w-full h-dvh text-text-main font-body;
 }
 
 #root {
