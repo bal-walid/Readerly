@@ -38,7 +38,7 @@ const NoteView = () => {
   }
   return (
     <ModalWrapper>
-      <div className="bg-white h-screen w-screen">
+      <div className="bg-white h-full w-full">
         <p
           onClick={() => router.navigate(`/shelf/${id}`)}
           className="flex justify-between items-center pt-2 px-2 italic text-text-secondary cursor-pointer hover:text-text-main"
