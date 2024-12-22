@@ -737,6 +737,10 @@ video {
   flex-direction: column;
 }
 
+.content-center {
+  align-content: center;
+}
+
 .items-start {
   align-items: flex-start;
 }
@@ -1384,5 +1388,17 @@ h1,h2,h3,h4,h5,h6 {
 @media not all and (min-width: 640px) {
   .max-sm\:hidden {
     display: none;
+  }
+}
+
+@media (min-width: 500px) {
+  @media not all and (min-width: 640px) {
+    .min-\[500px\]\:max-sm\:flex {
+      display: flex;
+    }
+
+    .min-\[500px\]\:max-sm\:justify-center {
+      justify-content: center;
+    }
   }
 }

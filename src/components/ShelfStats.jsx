@@ -66,12 +66,17 @@ const ShelfStats = () => {
       },
       640: {
         perPage: 1,
+        width: "70%",
       },
+      500 : {
+        perPage: 1,
+        width: "100%"
+      }
     }
   };
 
   return (
-    <div className="font-header text-white w-full">
+    <div className="font-header text-white w-full min-[500px]:max-sm:flex min-[500px]:max-sm:justify-center">
       <Splide options={splideOptions} className="p-4">
         {statKeys.map((status) => (
           <SplideSlide key={status}>
