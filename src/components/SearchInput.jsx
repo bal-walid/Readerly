@@ -40,7 +40,7 @@ const SearchInput = ({ className= "" ,handleSearch, instantSearch = false, input
       <select
         value={criteria}
         onChange={handleCriteriaChange}
-        className={"text-[#4D4D4D] bg-[#F8F5F5] rounded-l-full text-center outline-none py-2 px-3"}
+        className={"shadow-btn-shadow text-[#4D4D4D] bg-[#F8F5F5] rounded-l-full text-center outline-none py-2 px-3"}
       >
         <option value="title">Title</option>
         <option value="author">Author</option>
@@ -53,12 +53,12 @@ const SearchInput = ({ className= "" ,handleSearch, instantSearch = false, input
         onChange={handleQueryChange}
         onKeyUp={handleKeyUp}
         placeholder="Search..."
-        className={`py-2 px-3 outline-none min-w-0 ${inputFlex1 ? 'flex-1' : ''}`}
+        className={`shadow-btn-shadow py-2 px-3 outline-none min-w-0 ${inputFlex1 ? 'flex-1' : ''}`}
       />
 
       <button
         onClick={handleButtonClick}
-        className="text-main flex-items-center py-2 px-3 bg-white rounded-r-full outline-none"
+        className="shadow-btn-shadow text-main flex-items-center py-2 px-3 bg-white rounded-r-full outline-none"
       >
         <SearchIcon sx={{ strokeWidth: 0 }} fontSize="small" />
       </button>
