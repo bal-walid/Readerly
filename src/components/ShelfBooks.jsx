@@ -73,6 +73,7 @@ const ShelfBooks = () => {
           />
         </div>
       </h2>
+      {books && books.length === 0 && "Books added to your shelf will appear here."}
       <BookGrid
         loading={loading}
         onCardClick={openBookModal}

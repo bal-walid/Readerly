@@ -14,6 +14,10 @@ const CurrentlyReading = () => {
     return <div>Error loading books.</div>;
   }
 
+  if (books && books.length === 0) {
+    return <div>Books you marked currently reading will appear here.</div>
+  }
+
   return (
     <BookRow onCardClick={onCardClick} books={books} loading={loading} />
   );

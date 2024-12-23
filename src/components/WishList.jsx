@@ -19,6 +19,7 @@ const WishList = () => {
   return (
     <>
       <h1 className="primary-header mb-6">Your Wishlist</h1>
+      {books && books.length === 0 && "Books added to your wishlist will appear here."}
       <BookGrid loading={loading} onCardClick={openBookModal} books={books} />
       <Outlet context={{ close: closeBookModal, setBooks }} />
     </>

@@ -8,9 +8,18 @@ const RecommendedForYou = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [books, loading, error] = useFetch(fetchBooksByAuthors);
   if (error) {
-    return (<div>
-          <p>Error fetching books: {error.message}. Please refresh the page</p>
-    </div>)
+    if (error.message === "No authors found in the database.") {
+      return (
+        <div>
+          <p>Add more books to your shelf to see recommendations!</p>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <p>Error fetching books: {error.message}. Please refresh the page</p>
+      </div>
+    );
   }
   return (
     <>
