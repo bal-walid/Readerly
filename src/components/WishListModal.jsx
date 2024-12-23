@@ -9,6 +9,7 @@ import {
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CloseIcon from "@mui/icons-material/Close";
+import StarIcon from "@mui/icons-material/Star";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import { getExternalLinks } from "../utils/api";
 import router from "../main";
