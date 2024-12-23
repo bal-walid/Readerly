@@ -11,10 +11,7 @@ const ExploreResults = () => {
   const query = params.get("query");
   const [data, loading, error] = useFetch(fetchByCriteria, [criteria, query]);
   const [selectedBook, setSelectedBook] = useState(null);
-  if (loading) {
-    return "Loading...";
-  }
-  if (data) {
+
     return (
       <>
         {selectedBook && (
@@ -27,9 +24,9 @@ const ExploreResults = () => {
           Search Results for: {query}
         </h1>
 
-        <BookGrid books={data} onCardClick={(book) => setSelectedBook(book)} />
+        <BookGrid loading={loading} books={data} onCardClick={(book) => setSelectedBook(book)} />
       </>
     );
-  }
+  
 };
 export default ExploreResults;

@@ -19,17 +19,17 @@ const ShelfBooks = () => {
 
   const getFilteredBooks = () => {
     if (!books) return [];
-    
+
     let result = [...books];
 
     // Apply status filter
     if (statusFilter !== "All Books") {
-      result = result.filter(book => book.status === statusFilter);
+      result = result.filter((book) => book.status === statusFilter);
     }
 
     // Apply search filter
     if (searchQuery && searchCriteria) {
-      result = result.filter(book => 
+      result = result.filter((book) =>
         book[searchCriteria].toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
@@ -65,11 +65,19 @@ const ShelfBooks = () => {
             onStatusChange={handleFilter}
             filterDropdown={true}
           />
-          <SearchInput inputFlex1={true} className="max-sm:w-full" handleSearch={handleSearch} instantSearch={true} />
+          <SearchInput
+            inputFlex1={true}
+            className="max-sm:w-full"
+            handleSearch={handleSearch}
+            instantSearch={true}
+          />
         </div>
       </h2>
-      {loading && "Loading"}
-      {books && <BookGrid onCardClick={openBookModal} books={getFilteredBooks()} />}
+      <BookGrid
+        loading={loading}
+        onCardClick={openBookModal}
+        books={getFilteredBooks()}
+      />
       <Outlet context={{ close: closeBookModal, setBooks }} />
     </>
   );

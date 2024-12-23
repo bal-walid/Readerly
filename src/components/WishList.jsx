@@ -16,13 +16,10 @@ const WishList = () => {
   const closeBookModal = () => {
     router.navigate("/wishlist");
   };
-  if (loading) {
-    return "Loading...";
-  }
   return (
     <>
       <h1 className="primary-header mb-6">Your Wishlist</h1>
-      <BookGrid onCardClick={openBookModal} books={books} />
+      <BookGrid loading={loading} onCardClick={openBookModal} books={books} />
       <Outlet context={{ close: closeBookModal, setBooks }} />
     </>
   );
