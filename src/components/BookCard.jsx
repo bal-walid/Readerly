@@ -23,12 +23,18 @@ const BookCard = ({ book, onClick, loading = false }) => {
   return (
     <div onClick={onClick} className="bg-white w-fit py-2 px-3 rounded-xl">
       <div className="w-32 max-[390px]:w-40">
-        <img
-          className="loading border-[1px] border-silver w-full h-48 max-[390px]:h-56 object-cover rounded-lg"
-          src={coverUrl}
-          alt=""
-          onLoad={(e) => e.target.classList.remove("loading")}
-        />
+        {coverUrl ? (
+          <img
+            className="loading border-[1px] border-silver w-full h-48 max-[390px]:h-56 object-cover rounded-lg"
+            src={coverUrl}
+            alt="Book cover"
+            onLoad={(e) => e.target.classList.remove("loading")}
+          />
+        ) : (
+          <div className="border-[1px] border-silver w-full h-48 max-[390px]:h-56  rounded-lg flex items-center justify-center text-center text-gray-500 px-4">
+            No cover found
+          </div>
+        )}
         <p className="w-11/12 mt-2 whitespace-nowrap overflow-hidden overflow-ellipsis">
           {book.title}
         </p>

@@ -11,8 +11,10 @@ const ExploreBookContainer = ({ book, close }) => {
   const {
     bio,
     bioLoading,
+    bioError,
     synopsis,
     synopsisLoading,
+    synopsisError,
     inCollections,
     setInCollections,
     inCollectionsLoading,
@@ -52,8 +54,10 @@ const ExploreBookContainer = ({ book, close }) => {
       close={close}
       bio={bio}
       bioLoading={bioLoading}
+      bioError={bioError}
       synopsis={synopsis}
       synopsisLoading={synopsisLoading}
+      synopsisError={synopsisError}
       inCollections={inCollections}
       inCollectionsLoading={inCollectionsLoading}
       onAddToShelf={handleAddToShelf}

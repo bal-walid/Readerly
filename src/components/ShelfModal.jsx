@@ -15,7 +15,7 @@ import BookStatusDropdown from "./BookStatusDropdown";
 import router from "../main";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
-import "../assets/styles/loading.css"
+import "../assets/styles/loading.css";
 
 const ShelfModal = () => {
   const { close, setBooks } = useOutletContext();
@@ -55,7 +55,7 @@ const ShelfModal = () => {
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
           >
             <div className="flex items-center max-lg:flex-col">
-            <h2 className="flex-1 text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis max-lg:whitespace-normal max-lg:overflow-visible max-lg:text-clip max-lg:relative max-lg:w-full max-lg:text-center max-lg:flex max-lg:flex-col">
+              <h2 className="flex-1 text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis max-lg:whitespace-normal max-lg:overflow-visible max-lg:text-clip max-lg:relative max-lg:w-full max-lg:text-center max-lg:flex max-lg:flex-col">
                 <ArrowBackIcon
                   className="cursor-pointer max-lg:my-4"
                   onClick={close}
@@ -87,18 +87,26 @@ const ShelfModal = () => {
                   onClick={onRemoveFromShelf}
                   className="btn text-red-500 flex items-center gap-2 text-sm"
                 >
-                  <BookmarkRemoveIcon fontSize="small" /> <span className="flex-1">Remove From Shelf</span>
+                  <BookmarkRemoveIcon fontSize="small" />{" "}
+                  <span className="flex-1">Remove From Shelf</span>
                 </button>
               </div>
             </div>
             {/* Main */}
             <div className="pt-6 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
-              <img
-                className="loading w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
-                src={coverUrl}
-                alt="Book Cover"
-                onLoad={(e) => e.target.classList.remove("loading")}
-              />
+              {coverUrl ? (
+                <img
+                  className="loading aspect-[0.7/1] w-80 object-cover h-full border-[2px] border-silver rounded-md"
+                  src={coverUrl}
+                  alt="Book Cover"
+                  onLoad={(e) => e.target.classList.remove("loading")}
+                />
+              ) : (
+                <div className="aspect-[0.7/1] w-80 h-full border-[2px] border-silver rounded-md flex items-center justify-center text-center text-gray-500">
+                  No cover found
+                </div>
+              )}
+
               <div className="h-full grid max-lg:block grid-rows-[30%_minmax(0,1fr)] flex-1">
                 {/* Synopsis */}
                 <div className="flex flex-col">

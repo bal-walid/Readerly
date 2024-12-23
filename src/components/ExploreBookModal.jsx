@@ -5,15 +5,17 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import "../assets/styles/loading.css"
+import "../assets/styles/loading.css";
 
 const ExploreBookModal = ({
   book,
   close,
   bio,
+  bioError,
   bioLoading,
   synopsis,
   synopsisLoading,
+  synopsisError,
   inCollections,
   onAddToShelf,
   onAddToWishlist,
@@ -23,6 +25,7 @@ const ExploreBookModal = ({
   const coverUrl = book.cover
     ? `https://covers.openlibrary.org/b/id/${book.cover}-L.jpg`
     : null;
+
   return (
     <ModalWrapper onClose={close}>
       <div
@@ -33,7 +36,7 @@ const ExploreBookModal = ({
         <div className="flex max-lg:flex-col items-center">
           <h2 className="flex-1 text-main text-2xl font-header font-semibold whitespace-nowrap overflow-hidden text-ellipsis max-lg:whitespace-normal max-lg:overflow-visible max-lg:text-clip max-lg:relative max-lg:w-full max-lg:text-center max-lg:flex max-lg:flex-col">
             <span className="max-lg:order-2">{book.title}</span>
-            <button className="text-main lg:hidden  max-lg:order-1 max-lg:my-4  text-left">
+            <button className="text-main lg:hidden max-lg:order-1 max-lg:my-4  text-left">
               <CloseIcon
                 onClick={close}
                 fontSize="large"
@@ -67,14 +70,16 @@ const ExploreBookModal = ({
                     onClick={() => onAddToShelf(book, bio, synopsis)}
                     className="btn text-green-500 flex items-center gap-2 text-sm"
                   >
-                    <BookmarkAddOutlinedIcon fontSize="small" /> <span className="flex-1">Add To Shelf</span>
+                    <BookmarkAddOutlinedIcon fontSize="small" />{" "}
+                    <span className="flex-1">Add To Shelf</span>
                   </button>
                 ) : (
                   <button
                     onClick={() => onRemoveFromShelf(book.id)}
                     className="btn text-red-500 flex items-center gap-2 text-sm"
                   >
-                    <BookmarkRemoveIcon fontSize="small" /> <span className="flex-1">Remove From Shelf</span>
+                    <BookmarkRemoveIcon fontSize="small" />{" "}
+                    <span className="flex-1">Remove From Shelf</span>
                   </button>
                 )}
                 {!inCollections.inWishlist ? (
@@ -82,14 +87,16 @@ const ExploreBookModal = ({
                     onClick={() => onAddToWishlist(book, bio, synopsis)}
                     className="btn text-[#DBC332] flex items-center gap-2 text-sm"
                   >
-                    <StarBorderOutlinedIcon fontSize="small" /> <span className="flex-1">Add To Wishlist</span>
+                    <StarBorderOutlinedIcon fontSize="small" />{" "}
+                    <span className="flex-1">Add To Wishlist</span>
                   </button>
                 ) : (
                   <button
                     onClick={() => onRemoveFromWishlist(book.id)}
                     className="btn text-red-500 flex items-center gap-2 text-sm"
                   >
-                    <StarIcon fontSize="small" /> <span className="flex-1">Remove From Wishlist</span>
+                    <StarIcon fontSize="small" />{" "}
+                    <span className="flex-1">Remove From Wishlist</span>
                   </button>
                 )}
               </>
@@ -106,14 +113,20 @@ const ExploreBookModal = ({
 
         {/* Main */}
         <div className="pt-2 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
-          <img
-            className="loading aspect-[0.7/1] w-80 object-cover h-full border-[2px] border-silver rounded-md"
-            src={coverUrl}
-            alt="Book Cover"
-            onLoad={(e) => e.target.classList.remove("loading")}
-          />
+          {coverUrl ? (
+            <img
+              className="loading aspect-[0.7/1] w-80 object-cover h-full border-[2px] border-silver rounded-md"
+              src={coverUrl}
+              alt="Book Cover"
+              onLoad={(e) => e.target.classList.remove("loading")}
+            />
+          ) : (
+            <div className="aspect-[0.7/1] w-80 h-full border-[2px] border-silver rounded-md flex items-center justify-center text-center text-gray-500">
+              No cover found
+            </div>
+          )}
+
           <div className="h-full grid max-lg:block grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)]">
-            {/* Ratings */}
             {/* Ratings */}
             <p className="flex items-center max-lg:justify-center gap-3 max-[1100px]:text-sm max-[1100px]:gap-2">
               <StarIcon
@@ -151,6 +164,8 @@ const ExploreBookModal = ({
                 dangerouslySetInnerHTML={{
                   __html: synopsisLoading
                     ? "Loading synopsis..."
+                    : synopsisError
+                    ? `Error loading synopsis. Please try again.`
                     : synopsis || "No Synopsis Found.",
                 }}
               ></p>
@@ -164,6 +179,8 @@ const ExploreBookModal = ({
                 dangerouslySetInnerHTML={{
                   __html: bioLoading
                     ? "Loading author bio..."
+                    : bioError
+                    ? `Error loading bio. Please try again.`
                     : bio || "Author data not found.",
                 }}
               ></p>

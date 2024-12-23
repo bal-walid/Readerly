@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { findWishListBookById, addBookToShelf, removeBookFromWishlist } from "../utils/db";
+import {
+  findWishListBookById,
+  addBookToShelf,
+  removeBookFromWishlist,
+} from "../utils/db";
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,7 +15,7 @@ import router from "../main";
 import goodreadsIcon from "../assets/images/goodreads.svg";
 import amazonIcon from "../assets/images/amazon.svg";
 import openLibraryIcon from "../assets/images/openLibrary.png";
-import "../assets/styles/loading.css"
+import "../assets/styles/loading.css";
 
 const WishListModal = () => {
   const { id } = useParams();
@@ -84,13 +88,15 @@ const WishListModal = () => {
               onClick={onSendToShelf}
               className="btn text-green-500 flex items-center gap-2 text-sm"
             >
-              <BookmarkAddOutlinedIcon fontSize="small" /> <span className="flex-1">Send To Shelf</span>
+              <BookmarkAddOutlinedIcon fontSize="small" />{" "}
+              <span className="flex-1">Send To Shelf</span>
             </button>
             <button
               onClick={onRemoveFromWishlist}
               className="btn text-red-500 flex items-center gap-2 text-sm"
             >
-              <StarIcon fontSize="small" /> <span className="flex-1">Remove From Wishlist</span>
+              <StarIcon fontSize="small" />{" "}
+              <span className="flex-1">Remove From Wishlist</span>
             </button>
             <button className="text-main max-lg:hidden">
               <CloseIcon onClick={close} fontSize="large" />
@@ -100,12 +106,19 @@ const WishListModal = () => {
 
         {/* Main */}
         <div className="pt-6 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
-          <img
-            className="loading w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
-            src={coverUrl}
-            alt="Book Cover"
-            onLoad={(e) => e.target.classList.remove("loading")}
-          />
+          {coverUrl ? (
+            <img
+              className="loading aspect-[0.7/1] w-80 object-cover h-full border-[2px] border-silver rounded-md"
+              src={coverUrl}
+              alt="Book Cover"
+              onLoad={(e) => e.target.classList.remove("loading")}
+            />
+          ) : (
+            <div className="aspect-[0.7/1] w-80 h-full border-[2px] border-silver rounded-md flex items-center justify-center text-center text-gray-500">
+              No cover found
+            </div>
+          )}
+
           <div className="h-full grid max-lg:block grid-rows-[auto_40%_minmax(0,1fr)]">
             {/* Ratings */}
             <p className="flex items-center max-lg:justify-center gap-3 max-[1100px]:text-sm max-[1100px]:gap-2">
@@ -116,7 +129,10 @@ const WishListModal = () => {
                     lg: "35px",
                   },
                 }}
-                className={(book.rating ? "text-main" : "text-text-secondary") + " text-xs"}
+                className={
+                  (book.rating ? "text-main" : "text-text-secondary") +
+                  " text-xs"
+                }
               />
               {book.rating ? (
                 <>
@@ -133,47 +149,49 @@ const WishListModal = () => {
               )}
             </p>
 
-              {/* Synopsis */}
-              <div className="flex flex-col">
-                <h3 className="text-2xl mt-3 font-semibold">Synopsis</h3>
-                <p
-                  className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
-                  dangerouslySetInnerHTML={{
-                    __html: book.synopsis || "No Synopsis available.",
-                  }}
-                ></p>
+            {/* Synopsis */}
+            <div className="flex flex-col">
+              <h3 className="text-2xl mt-3 font-semibold">Synopsis</h3>
+              <p
+                className="book-info break-anywhere overflow-y-auto scrollbar pr-3"
+                dangerouslySetInnerHTML={{
+                  __html: book.synopsis || "No Synopsis available.",
+                }}
+              ></p>
+            </div>
+            {/* Links */}
+            <div className="flex flex-col max-lg:pb-4">
+              <h3 className="text-2xl mt-3 font-semibold max-[1200px]:mb-3">
+                Links
+              </h3>
+              <div className="overflow-y-auto scrollbar pr-3 flex-1 flex flex-col gap-4 items-center">
+                {book.isbn && (
+                  <>
+                    <a
+                      className="p-2 rounded-lg shadow-btn-shadow w-1/2 max-[1200px]:w-[70%] gap-2 flex items-center bg-[#313131] text-white font-header font-semibold"
+                      href={links.amazon}
+                    >
+                      <img className="w-6 h-6" src={amazonIcon} alt="" /> Buy on
+                      amazon
+                    </a>
+                    <a
+                      className="p-2 rounded-lg shadow-btn-shadow w-1/2 max-[1200px]:w-[70%] gap-2 flex items-center bg-[#EBE8D3] text-[#938779] font-header font-semibold"
+                      href={links.goodreads}
+                    >
+                      <img className="w-6 h-6" src={goodreadsIcon} alt="" />
+                      Read reviews on goodreads
+                    </a>
+                  </>
+                )}
+                <a
+                  className="p-2 rounded-lg shadow-btn-shadow w-1/2 max-[1200px]:w-[70%] gap-2 flex items-center bg-[#E2DCC5] text-[#5E92C3] font-header font-semibold"
+                  href={links.openLibrary}
+                >
+                  <img className="w-6 h-6" src={openLibraryIcon} alt="" />
+                  See on OpenLibrary
+                </a>
               </div>
-                          {/* Links */}
-                          <div className="flex flex-col max-lg:pb-4">
-                <h3 className="text-2xl mt-3 font-semibold max-[1200px]:mb-3">Links</h3>
-                <div className="overflow-y-auto scrollbar pr-3 flex-1 flex flex-col gap-4 items-center">
-                  {book.isbn && (
-                    <>
-                      <a
-                        className="p-2 rounded-lg shadow-btn-shadow w-1/2 max-[1200px]:w-[70%] gap-2 flex items-center bg-[#313131] text-white font-header font-semibold"
-                        href={links.amazon}
-                      >
-                        <img className="w-6 h-6" src={amazonIcon} alt="" /> Buy
-                        on amazon
-                      </a>
-                      <a
-                        className="p-2 rounded-lg shadow-btn-shadow w-1/2 max-[1200px]:w-[70%] gap-2 flex items-center bg-[#EBE8D3] text-[#938779] font-header font-semibold"
-                        href={links.goodreads}
-                      >
-                        <img className="w-6 h-6" src={goodreadsIcon} alt="" />
-                        Read reviews on goodreads
-                      </a>
-                    </>
-                  )}
-                  <a
-                    className="p-2 rounded-lg shadow-btn-shadow w-1/2 max-[1200px]:w-[70%] gap-2 flex items-center bg-[#E2DCC5] text-[#5E92C3] font-header font-semibold"
-                    href={links.openLibrary}
-                  >
-                    <img className="w-6 h-6" src={openLibraryIcon} alt="" />
-                    See on OpenLibrary
-                  </a>
-                </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>
