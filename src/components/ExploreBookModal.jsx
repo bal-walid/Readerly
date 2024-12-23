@@ -5,6 +5,7 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import "../assets/styles/loading.css"
 
 const ExploreBookModal = ({
   book,
@@ -106,9 +107,10 @@ const ExploreBookModal = ({
         {/* Main */}
         <div className="pt-2 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
           <img
-            className="aspect-[0.7/1] w-80 object-cover h-full border-[2px] border-silver rounded-md"
+            className="loading aspect-[0.7/1] w-80 object-cover h-full border-[2px] border-silver rounded-md"
             src={coverUrl}
             alt="Book Cover"
+            onLoad={(e) => e.target.classList.remove("loading")}
           />
           <div className="h-full grid max-lg:block grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)]">
             {/* Ratings */}

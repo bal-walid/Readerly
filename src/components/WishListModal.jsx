@@ -5,14 +5,13 @@ import { findWishListBookById, addBookToShelf, removeBookFromWishlist } from "..
 import ModalWrapper from "./ModalWrapper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CloseIcon from "@mui/icons-material/Close";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import { getExternalLinks } from "../utils/api";
 import router from "../main";
 import goodreadsIcon from "../assets/images/goodreads.svg";
 import amazonIcon from "../assets/images/amazon.svg";
 import openLibraryIcon from "../assets/images/openLibrary.png";
+import "../assets/styles/loading.css"
 
 const WishListModal = () => {
   const { id } = useParams();
@@ -102,9 +101,10 @@ const WishListModal = () => {
         {/* Main */}
         <div className="pt-6 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
           <img
-            className="w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
+            className="loading w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
             src={coverUrl}
             alt="Book Cover"
+            onLoad={(e) => e.target.classList.remove("loading")}
           />
           <div className="h-full grid max-lg:block grid-rows-[auto_40%_minmax(0,1fr)]">
             {/* Ratings */}

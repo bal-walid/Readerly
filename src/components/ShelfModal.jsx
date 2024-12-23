@@ -15,6 +15,7 @@ import BookStatusDropdown from "./BookStatusDropdown";
 import router from "../main";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import "../assets/styles/loading.css"
 
 const ShelfModal = () => {
   const { close, setBooks } = useOutletContext();
@@ -93,9 +94,10 @@ const ShelfModal = () => {
             {/* Main */}
             <div className="pt-6 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
               <img
-                className="w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
+                className="loading w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
                 src={coverUrl}
                 alt="Book Cover"
+                onLoad={(e) => e.target.classList.remove("loading")}
               />
               <div className="h-full grid max-lg:block grid-rows-[30%_minmax(0,1fr)] flex-1">
                 {/* Synopsis */}
