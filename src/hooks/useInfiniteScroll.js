@@ -28,6 +28,7 @@ const useInfiniteScroll = (fetchFunction, params, perPageLimit = 15) => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        setError(false);
         setHasMore(true);
         setPage(1);
         const response = await fetchFunction(...params, 1);
