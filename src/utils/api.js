@@ -111,3 +111,31 @@ export const getExternalLinks = (book) => {
     openLibrary: openLibraryLink,
   };
 };
+
+export const getTrendingBooks = async () => {
+  const url = `${API_BASE}trending/monthly.json`;
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch books: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    const titles = data.works.map((doc) => doc.title);
+    const queryString = titles.map((title) => `"${title}"`).join(" OR ");
+    const secondaryUrl = `${API_BASE}search.json?q=title:(${queryString})${default_fields}${pagination_params(
+      30,
+      1
+    )}`;
+
+    const secondaryResponse = await fetch(secondaryUrl);
+    const secondaryData = await secondaryResponse.json();
+    return mapBooksResponse(secondaryData);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
