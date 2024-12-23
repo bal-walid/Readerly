@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import ExploreResults from "./components/ExploreResults.jsx";
+import Home from "./components/Home.jsx";
 import NoteEditor from "./components/NoteEditor.jsx";
 import NoteView from "./components/NoteView.jsx";
 import Shelf from "./components/Shelf.jsx";
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/" },
+      { path: "/", element: <Home/> },
       { path: "/explore", element: <ExploreResults /> },
       {
         path: "/shelf",
