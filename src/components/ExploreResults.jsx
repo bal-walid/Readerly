@@ -41,7 +41,9 @@ const ExploreResults = () => {
 
       {error ? (
         error.message === "No authors found in the database." ? (
-          "Add more books to your shelf to see recommendations!"
+          <div className="max-sm:text-center">
+            Add more books to your shelf to see recommendations!
+          </div>
         ) : (
           <div>
             <p>

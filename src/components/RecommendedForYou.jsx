@@ -11,7 +11,7 @@ const RecommendedForYou = () => {
     if (error.message === "No authors found in the database.") {
       return (
         <div>
-          <p>Add more books to your shelf to see recommendations!</p>
+          <p className="max-sm:text-center">Add more books to your shelf to see recommendations!</p>
         </div>
       );
     }
