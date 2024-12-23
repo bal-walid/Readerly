@@ -13,7 +13,9 @@ function App() {
     <>
       <Navbar/>
       <main className='flex-1 overflow-y-auto bg-primary px-12 pt-8 max-lg:pb-[40px] max-sm:px-6'>
-        <SearchInput handleSearch={handleSearch}/>
+        <div className='flex max-sm:justify-center'>
+          <SearchInput handleSearch={handleSearch}/>
+        </div>
         <Outlet/>
       </main>
     </>
