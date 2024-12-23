@@ -66,7 +66,7 @@ export const fetchAuthorBio = async (authorId) => {
       bio = bio.value;
     }
     return formatText(bio);
-  } catch {
+  } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
@@ -90,7 +90,7 @@ export const fetchSynopsis = async (workId) => {
       synopsis = synopsis.value;
     }
     return formatText(synopsis);
-  } catch {
+  } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
