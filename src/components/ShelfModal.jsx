@@ -93,7 +93,7 @@ const ShelfModal = () => {
             {/* Main */}
             <div className="pt-6 flex max-lg:flex-col max-lg:items-center gap-9 max-lg:gap-1 flex-1 min-h-0">
               <img
-                className="w-80 object-cover h-full border-[2px] border-silver rounded-md"
+                className="w-80 aspect-[0.7/1] object-cover h-full border-[2px] border-silver rounded-md"
                 src={coverUrl}
                 alt="Book Cover"
               />

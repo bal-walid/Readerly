@@ -562,16 +562,8 @@ video {
   left: 0px;
 }
 
-.right-0 {
-  right: 0px;
-}
-
 .top-0 {
   top: 0px;
-}
-
-.top-1\/2 {
-  top: 50%;
 }
 
 .z-10 {
@@ -612,10 +604,6 @@ video {
   margin-top: 0.75rem;
 }
 
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
 .inline {
   display: inline;
 }
@@ -630,6 +618,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.aspect-\[0\.7\/1\] {
+  aspect-ratio: 0.7/1;
 }
 
 .h-48 {
@@ -654,10 +646,6 @@ video {
 
 .h-full {
   height: 100%;
-}
-
-.h-screen {
-  height: 100vh;
 }
 
 .min-h-0 {
@@ -709,10 +697,6 @@ video {
   width: 100%;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .min-w-0 {
   min-width: 0px;
 }
@@ -727,11 +711,6 @@ video {
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.-translate-y-1\/2 {
-  --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-pointer {
@@ -752,10 +731,6 @@ video {
 
 .grid-rows-\[auto_minmax\(0\2c 1fr\)_minmax\(0\2c 1fr\)\] {
   grid-template-rows: auto minmax(0,1fr) minmax(0,1fr);
-}
-
-.grid-rows-\[auto_minmax\(0\2c 1fr\)\] {
-  grid-template-rows: auto minmax(0,1fr);
 }
 
 .flex-col {
@@ -1057,11 +1032,6 @@ video {
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .text-sm {
@@ -1374,10 +1344,6 @@ h1,h2,h3,h4,h5,h6 {
     margin-bottom: 0.75rem;
   }
 
-  .max-\[1200px\]\:w-\[60\%\] {
-    width: 60%;
-  }
-
   .max-\[1200px\]\:w-\[70\%\] {
     width: 70%;
   }
@@ -1536,22 +1502,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 @media not all and (min-width: 640px) {
-  .max-sm\:static {
-    position: static;
-  }
-
-  .max-sm\:order-1 {
-    order: 1;
-  }
-
-  .max-sm\:order-2 {
-    order: 2;
-  }
-
-  .max-sm\:flex {
-    display: flex;
-  }
-
   .max-sm\:hidden {
     display: none;
   }
@@ -1566,11 +1516,6 @@ h1,h2,h3,h4,h5,h6 {
 
   .max-sm\:w-full {
     width: 100%;
-  }
-
-  .max-sm\:translate-y-0 {
-    --tw-translate-y: 0px;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .max-sm\:flex-col {
@@ -1611,12 +1556,6 @@ h1,h2,h3,h4,h5,h6 {
     .min-\[500px\]\:max-sm\:justify-center {
       justify-content: center;
     }
-  }
-}
-
-@media (min-width: 640px) {
-  .sm\:hidden {
-    display: none;
   }
 }
 
