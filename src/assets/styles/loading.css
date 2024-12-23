@@ -6,8 +6,26 @@
   border-color: transparent !important;
 }
 
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 4px solid white;
+  border-top-color: #f8f1e7;
+  border-radius: 50%;
+  transform-origin: center;
+  transform: rotate(0deg);
+  animation: spin 1s linear infinite;
+}
+
+
 @keyframes shine {
   to {
     background-position-x: -200%;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

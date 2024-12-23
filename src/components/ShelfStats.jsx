@@ -33,8 +33,7 @@ const ShelfStats = () => {
     };
   }, []);
 
-  // Render loading or error states
-  if (loading) return <p>Loading shelf stats...</p>;
+
   if (error) return <p>Error fetching stats: {error.message}</p>;
 
   // Define the stat keys
@@ -81,7 +80,7 @@ const ShelfStats = () => {
         {statKeys.map((status) => (
           <SplideSlide key={status}>
             <div className="flex flex-col items-center justify-center bg-main bg-opacity-90 rounded-2xl p-4 h-full">
-              <p className="w-full font-semibold text-xl text-center">{stats[status]}</p>
+              <p className={`w-full font-semibold text-xl text-center `}><span className={`inline-block ${loading ? "spinner" : ""}`}>{loading ? "" : stats[status]}</span></p>
               <p>{status}</p>
             </div>
           </SplideSlide>
