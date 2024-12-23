@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import BookCard from "./BookCard";
 
-const BookRow = ({ books, loading, onCardClick }) => {
+const BookRow = ({ books, loading, error, onCardClick }) => {
   const [booksInRow, setBooksInRow] = useState(0);
   const containerRef = useRef();
 
@@ -30,7 +30,7 @@ const BookRow = ({ books, loading, onCardClick }) => {
         ? Array.from({ length: booksInRow }, (_, index) => (
             <BookCard key={`placeholder-${index}`} loading={true} />
           ))
-        : books.slice(0, booksInRow).map((book) => (
+        : !error && books.slice(0, booksInRow).map((book) => (
             <BookCard onClick={() => onCardClick(book)} key={book.id} book={book} />
           ))}
     </div>
