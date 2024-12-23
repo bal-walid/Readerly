@@ -150,7 +150,7 @@ export const fetchBooksByAuthors = async (limit = 8, page = 1) => {
       throw new Error("No authors found in the database.");
     }
     const queryString = authors.map((author) => `"${author}"`).join(" OR ");
-    const url = `${API_BASE}search.json?q=author(${queryString})${default_fields}${pagination_params(
+    const url = `${API_BASE}search.json?q=author:(${queryString})${default_fields}${pagination_params(
       limit,
       page
     )}`;
