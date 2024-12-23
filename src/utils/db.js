@@ -198,5 +198,10 @@ const deleteNote = async (bookId, noteId) => {
   }
 };
 
+const getUniqueAuthors = async () => {
+  const books = await db.shelf.toArray();
+  return [...new Set(books.map((book) => book.author))];
+};
 
-export { addBookToShelf, addBookToWishlist, getWishlistBooks, getShelfStats, getShelfBooks, getShelfBooksByStatus, findWishListBookById, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote, bookInCollections, removeBookFromShelf, removeBookFromWishlist };
+
+export { addBookToShelf, addBookToWishlist, getWishlistBooks, getShelfStats, getShelfBooks, getShelfBooksByStatus, findWishListBookById, findShelfBookById, updateBookStatus, addNote, getNoteById, deleteNote, bookInCollections, removeBookFromShelf, removeBookFromWishlist, getUniqueAuthors };

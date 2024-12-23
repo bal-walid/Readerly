@@ -1,4 +1,5 @@
 import formatText from "./formatText";
+import { getUniqueAuthors } from "./db";
 
 const API_BASE = `https://openlibrary.org/`;
 const default_fields =
@@ -139,3 +140,35 @@ export const getTrendingBooks = async () => {
     throw error;
   }
 }
+
+
+
+export const fetchBooksByAuthors = async (limit = 8, page = 1) => {
+  try {
+    const authors = await getUniqueAuthors();
+    if (!authors || authors.length === 0) {
+      throw new Error("No authors found in the database.");
+    }
+    const queryString = authors.map((author) => `"${author}"`).join(" OR ");
+    const url = `${API_BASE}search.json?q=author(${queryString})${default_fields}${pagination_params(
+      limit,
+      page
+    )}`;
+
+    // Fetch books
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch books: ${response.status} ${response.statusText}`
+      );
+    }
+
+    // Process response
+    const data = await response.json();
+    return mapBooksResponse(data);
+  } catch (error) {
+    console.error("Error fetching books by authors:", error);
+    throw error;
+  }
+};
