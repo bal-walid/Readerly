@@ -122,7 +122,7 @@ const WishListModal = () => {
 
           <div className="h-full grid max-lg:block grid-rows-[auto_40%_minmax(0,1fr)]">
             {/* Ratings */}
-            <p className="flex items-center max-lg:justify-center gap-3 max-[1100px]:text-sm max-[1100px]:gap-2">
+            <p className="flex max-[450px]:flex-col max-[450px]:gap-0 max-[1100px]:gap-2 gap-3 items-center max-lg:justify-center max-[1100px]:text-sm ">
               <StarIcon
                 sx={{
                   fontSize: {
